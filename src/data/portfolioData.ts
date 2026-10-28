@@ -49,6 +49,13 @@ export interface EducationItem {
   coursework: string;
 }
 
+export interface CertificationItem {
+  title: string;
+  issuer: string;
+  badgeColor?: string;
+  date?: string;
+}
+
 export interface PlaygroundModel {
   id: string;
   name: string;
@@ -70,8 +77,10 @@ export const PORTFOLIO_DATA = {
   personal: {
     name: "Mann Patel",
     role: "AI & Machine Learning Systems Engineer",
+    phone: "+91 9824804372",
+    objective: "Results-driven Computer Engineering student seeking an AI-ML Developer role. Proven experience architecting autonomous multi-agent systems, high-availability LLM failover arrays, and RAG vector search pipelines. Currently expanding expertise in Cloud Engineering and serverless infrastructure (AWS/Cloudflare) to build scalable, cloud-native AI solutions.",
     statusBadge: "⚡ Available for AI/ML Engineering & Research Roles",
-    location: "Ahmedabad, Mumbai, Pune / Remote",
+    location: "Ahmedabad, Gujarat / Remote",
     tagline: "Architecting Autonomous Multi-Agent AI Swarms, Production RAG Pipelines & Computer Vision Systems.",
     bio: "Computer Science & Engineering specialist skilled in building Autonomous Multi-Agent Swarms, Retrieval-Augmented Generation (RAG) engines, on-device Computer Vision with OpenCV, and high-performance full-stack AI architectures using Python (FastAPI), Next.js, PyTorch, Google Gemini, and Hugging Face diffusion models.",
     metrics: [
@@ -269,6 +278,33 @@ export const PORTFOLIO_DATA = {
         "Ghost share engine with TTL countdown timers, auto-shredding, and SHA-256 smart deduplication"
       ],
       gradient: "from-emerald-500/20 via-teal-600/10 to-transparent"
+    },
+    {
+      id: "project-facetrack",
+      title: "FaceTrack: AI-Powered Attendance System",
+      tagline: "Real-Time Biometric Face Recognition & Automated Attendance Tracking",
+      description: "An end-to-end computer vision application built with Streamlit and OpenCV to process live video footage, automate attendance tracking, and generate real-time CSV reports. Implemented deep learning facial recognition utilizing VGG-Face to extract high-dimensional facial embeddings and match dynamic video frames against a secure image database.",
+      problemSolution: {
+        problem: "Manual attendance logging in classrooms and organizations is time-consuming, prone to proxy attendance/buddy punching, and lacks automated reporting.",
+        solution: "Engineered an automated real-time biometric vision pipeline with OpenCV and DeepFace (VGG-Face) that extracts facial embeddings from dynamic video frames, matches identities against a secure database, and generates instant CSV attendance logs."
+      },
+      metrics: [
+        { label: "Vision Backbone", value: "OpenCV + DeepFace" },
+        { label: "Recognition Model", value: "VGG-Face Deep Net" },
+        { label: "App Interface", value: "Streamlit Web UI" },
+        { label: "Report Generation", value: "Real-Time CSV" }
+      ],
+      tags: ["Python", "Streamlit", "OpenCV", "DeepFace", "VGG-Face", "Computer Vision", "Facial Biometrics"],
+      featured: true,
+      githubUrl: "https://github.com/Mann-Patel85",
+      demoUrl: "https://github.com/Mann-Patel85",
+      architectureDetails: [
+        "Real-time video frame capture and facial bounding box localization via OpenCV Haar Cascades",
+        "DeepFace feature extraction extracting high-dimensional facial embeddings using VGG-Face",
+        "Cosine similarity matching against authenticated image database with dynamic frame validation",
+        "Automated attendance logging with timestamp deduplication and exportable CSV reports"
+      ],
+      gradient: "from-blue-500/20 via-cyan-600/10 to-transparent"
     }
   ] as ProjectItem[],
 
@@ -461,11 +497,29 @@ export const PORTFOLIO_DATA = {
 
   education: [
     {
-      degree: "B.Tech in Computer Science & Engineering",
-      institution: "Institute of Technology",
-      gpa: "8.8 / 10.0",
-      honors: "Specialization in Artificial Intelligence & Machine Learning",
-      coursework: "Artificial Intelligence, Machine Learning, Deep Learning, Cloud Computing (AWS), Computer Vision (OpenCV), Data Structures & Algorithms, Operating Systems, Distributed Systems."
+      degree: "B. TECH in Computer Science & Engineering",
+      institution: "Silver Oak College of Technology | Ahmedabad",
+      gpa: "9.27 CGPA (3rd Year)",
+      honors: "2023 — 2027",
+      coursework: "Data Structures & Algorithms (DSA), Operating Systems (OS), Database Management Systems (DBMS), Computer Networks, Machine Learning, Deep Learning, Cloud Computing (AWS)."
     }
-  ] as EducationItem[]
+  ] as EducationItem[],
+
+  certifications: [
+    {
+      title: "AI Developer",
+      issuer: "AICERTs",
+      badgeColor: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10"
+    },
+    {
+      title: "Data Analytics",
+      issuer: "IBM SkillBuild PBL Program",
+      badgeColor: "text-blue-400 border-blue-500/30 bg-blue-500/10"
+    },
+    {
+      title: "Diploma in Multilingual Computer Programming",
+      issuer: "CDAC",
+      badgeColor: "text-purple-400 border-purple-500/30 bg-purple-500/10"
+    }
+  ] as CertificationItem[]
 };

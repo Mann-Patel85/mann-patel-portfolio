@@ -1,0 +1,195 @@
+================================================================================
+  GALACTIC / NEURAL CONSTELLATION AI/ML DEVELOPER PORTFOLIO - FULL EXPLANATION
+================================================================================
+
+1. PROJECT OVERVIEW & VISION
+--------------------------------------------------------------------------------
+This project is a modern, high-performance, single-page developer portfolio
+crafted specifically for an AI / Machine Learning Systems Engineer.
+
+The core aesthetic is "Galactic Deep Space & Neural Constellation" - blending:
+  - 3D WebGL particle graphics simulating artificial neurons and synapses floating in space
+  - Dark-mode sci-fi minimalism with neon cyan, electric violet, and deep cosmic indigo accents
+  - Glassmorphic UI cards (backdrop blur, subtle border glow, hover spotlights)
+  - Interactive technical features (real-time telemetry, mock ML playground, 3D card tilt)
+  - Reactive state connection: Hovering over skills in the UI activates corresponding
+    3D neural node clusters in the background WebGL canvas!
+
+
+2. TECH STACK & CORE LIBRARIES
+--------------------------------------------------------------------------------
+- Framework:       Next.js 16 (App Router) + React 19 + TypeScript
+- 3D WebGL:        Three.js via React Three Fiber (@react-three/fiber) & @react-three/drei
+- Animation:       Framer Motion (spring physics, layout animations, entrance transitions)
+- Styling:         Tailwind CSS v4 + Vanilla CSS tokens in globals.css
+- Icons & Visuals: Lucide React + Custom Inline SVG Brand Icons (GitHub, LinkedIn)
+- Particle FX:     Canvas-Confetti (neon cosmic transmission feedback)
+- Bundler/Engine:  Turbopack (sub-second compile times and fast static optimization)
+
+
+3. DIRECTORY & FILE STRUCTURE
+--------------------------------------------------------------------------------
+Portfolio/
+├── src/
+│   ├── app/
+│   │   ├── favicon.ico             # Custom browser favicon
+│   │   ├── globals.css             # Global dark-theme, scrollbars, selection glows
+│   │   ├── layout.tsx              # SEO metadata, OpenGraph tags, Geist font configs
+│   │   └── page.tsx                # Master single-page assembly + dynamic Three.js canvas
+│   │
+│   ├── components/
+│   │   ├── canvas/
+│   │   │   ├── NebulaGlow.tsx      # Procedural volumetric cyan/violet nebula planes
+│   │   │   ├── NeuralConstellation.tsx # 3D neural nodes & pulsing synapse line segments
+│   │   │   ├── Scene.tsx           # Responsive Three.js Canvas container + DPR clamping
+│   │   │   └── Starfield.tsx       # 1,400+ volumetric stars with orbital rotation & parallax
+│   │   │
+│   │   ├── sections/
+│   │   │   ├── ContactSection.tsx  # Cyberpunk terminal contact prompt & confetti trigger
+│   │   │   ├── ExperienceTimeline.tsx # Vertical cosmic timeline with orbital steps
+│   │   │   ├── Hero.tsx            # Headline, live GPU metrics ticker & quick CTAs
+│   │   │   ├── MLPlayground.tsx    # Interactive terminal with simulated streaming tokens & stats
+│   │   │   ├── ProjectsGrid.tsx    # 3D mouse tilt cards, metrics, and architecture modal
+│   │   │   └── SkillsMatrix.tsx    # Bento Grid with hover links to 3D constellation nodes
+│   │   │
+│   │   └── ui/
+│   │       ├── BrandIcons.tsx      # Crisp inline SVGs for GitHub & LinkedIn
+│   │       ├── CustomCursor.tsx    # Magnetic glowing cursor with spring physics
+│   │       ├── Footer.tsx          # Telemetry uptime counter and status badge
+│   │       ├── Navbar.tsx          # Floating glassmorphic dock with active section spy
+│   │       └── ResumeModal.tsx     # Interactive Curriculum Vitae viewer & PDF downloader
+│   │
+│   ├── context/
+│   │   └── NeuralContext.tsx       # React Context linking UI hover states to 3D canvas
+│   │
+│   ├── data/
+│   │   └── portfolioData.ts        # Centralized structured data for easy personalization
+│   │
+│   └── lib/
+│       └── utils.ts                # Tailwind class merging utility (clsx + twMerge)
+│
+├── package.json                    # Project dependencies and script commands
+├── tsconfig.json                   # TypeScript path aliases and compiler settings
+└── PORTFOLIO_EXPLANATION.txt       # Complete architectural and usage guide
+
+
+4. DETAILED COMPONENT BREAKDOWN
+--------------------------------------------------------------------------------
+
+[A] 3D Canvas Background (src/components/canvas/)
+  1. Scene.tsx:
+     - Hosts the React Three Fiber <Canvas> with dynamic client-side loading (ssr: false).
+     - Clamps device pixel ratio (DPR: [1, 1.5]) to ensure silky 60+ FPS on all monitors.
+     - Automatically throttles particle counts on mobile screens (<768px).
+
+  2. Starfield.tsx:
+     - Generates 1,400+ 3D points dispersed on a spherical shell.
+     - Adds slow continuous orbital drift plus smooth mouse parallax offset.
+     - Employs Additive Blending and custom color palettes (white, cyan, electric indigo).
+
+  3. NeuralConstellation.tsx:
+     - Mathematically clusters 110+ 3D nodes into layered manifolds.
+     - Computes dynamic distance-based synapses (LineSegments) connecting nearby nodes.
+     - Pulses energy waves along connections using sinusoidal phase equations.
+     - When a user hovers over a category in the SkillsMatrix (via NeuralContext),
+       matching nodes shift into high-intensity neon glow with accelerated pulse speed!
+
+  4. NebulaGlow.tsx:
+     - Employs stacked, counter-rotating translucent planes with additive blending
+       to simulate soft volumetric cosmic nebula clouds.
+
+[B] State Coordination (src/context/NeuralContext.tsx)
+  - Provides a lightweight global context storing `activeCategory`, `activeSkill`,
+    `isAudioEnabled`, and `isTerminalOpen`.
+  - Enables instant, decoupled communication between HTML DOM cards and WebGL shaders.
+
+[C] Hero Section (src/components/sections/Hero.tsx)
+  - Status Badge: Pulsing neon "⚡ Available for AI/ML Engineering & Research Roles".
+  - Headline: Futuristic gradient typography emphasizing scalable AI systems.
+  - Live Telemetry Card: Simulates real-time hardware telemetry:
+      • Latency: < 28ms (P99)
+      • Models Deployed: 14+
+      • GPU VRAM: Live oscillating gauge (~24.2 / 80 GB on NVIDIA H100)
+      • Throughput: 138+ tok/s / instance
+  - CTAs: Direct scroll to projects and instant CV modal trigger.
+
+[D] Skills Matrix (src/components/sections/SkillsMatrix.tsx)
+  - Bento-Grid organized across 4 domains:
+      1. Deep Learning & Frameworks (PyTorch, JAX, TensorRT, Hugging Face, TF)
+      2. Core ML, LLMs & Vision (LLMs, RAG, YOLOv9, Reinforcement Learning, Diffusion)
+      3. MLOps, Serving & Cloud (Triton, vLLM, Docker/K8s, MLflow, AWS/GCP)
+      4. Languages & Hardware (Python, CUDA C++, C++20, pgvector)
+  - Category filters and animated proficiency bars with glowing gradients.
+  - Hovering sends signals to the 3D Neural Constellation in the background.
+
+[E] Featured Projects (src/components/sections/ProjectsGrid.tsx)
+  - Modular cards with real-time 3D tilt calculated from cursor position.
+  - Spotlights glow following the mouse cursor across the card surface.
+  - Highlighted Projects:
+      1. NeuroRAG-Omni (Hybrid Vector RAG with ColBERT & FAISS GPU)
+      2. SynapseQuant & Distill (70B LLM Distillation & AWQ INT4 CUDA Kernels)
+      3. VisionPulse Edge (120 FPS Sub-millisecond YOLOv9 TensorRT Pipeline)
+      4. Aegis-RL Distributed (250k steps/s Multi-Agent RL in JAX)
+  - Features problem vs. solution callouts, performance metrics, GitHub links,
+    and an interactive "Inspect Deployment Graph" deep-dive modal.
+
+[F] ML Playground / Mini-Terminal (src/components/sections/MLPlayground.tsx)
+  - Selectable mock models (RAG, Chain-of-Thought Reasoning, Edge Object Detector).
+  - Customizable prompt inputs.
+  - "EXECUTE NEURAL INFERENCE" button triggers:
+      • Animated synthetic token stream with blinking cursor
+      • Real-time CUDA buffer allocation logs
+      • Live latency (ms), throughput (tok/s), confidence score, and VRAM indicators.
+
+[G] Experience Timeline (src/components/sections/ExperienceTimeline.tsx)
+  - Vertical cosmic timeline with orbital step indicators and glowing lines.
+  - Details industry roles, research fellowships, 1st place hackathon wins,
+    and open-source contributions with technology tags.
+
+[H] Contact Section (src/components/sections/ContactSection.tsx)
+  - Cyberpunk terminal prompt: `guest@neural-host:~$ ./dispatch_message.sh`
+  - Encrypted transmission feedback with celebratory neon confetti on submit.
+  - Social nodes grid: GitHub, LinkedIn, Hugging Face Hub, Kaggle, and direct email.
+
+[I] UI Polish & Extras (src/components/ui/)
+  - CustomCursor.tsx: Smooth dual-ring magnetic cursor that expands near buttons.
+  - Navbar.tsx: Floating glassmorphic dock with active section spy & mobile drawer.
+  - ResumeModal.tsx: Complete CV inspection modal with direct download capability.
+  - Footer.tsx: Live session uptime counter and system telemetry status.
+
+
+5. HOW TO CUSTOMIZE WITH YOUR OWN DETAILS
+--------------------------------------------------------------------------------
+To replace the sample data with your own name, bio, projects, and links:
+
+1. Open `src/data/portfolioData.ts`.
+2. Edit:
+   - `personal.name`, `personal.role`, `personal.bio`, `personal.location`
+   - `personal.socials` (GitHub, LinkedIn, Hugging Face, Kaggle, Email)
+   - `skills` (add or adjust your preferred tools and proficiency levels)
+   - `projects` (add your actual GitHub repos, demos, and metrics)
+   - `timeline` (update with your education, internships, and awards)
+   - `playgroundModels` (customize mock prompts and outputs)
+
+All components update automatically from this single file!
+
+
+6. HOW TO RUN & BUILD
+--------------------------------------------------------------------------------
+- Start Development Server:
+    npm run dev
+    (Opens on http://localhost:3000)
+
+- Build Production Bundle:
+    npm run build
+
+- Run Production Server:
+    npm run start
+
+- Stop Server:
+    Press Ctrl + C in the terminal.
+    Or in PowerShell: Stop-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess -Force
+
+================================================================================
+                         END OF PORTFOLIO EXPLANATION
+================================================================================

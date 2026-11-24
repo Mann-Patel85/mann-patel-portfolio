@@ -7,7 +7,6 @@ import {
   FileText,
   Sparkles,
   Terminal,
-  Activity,
   Cpu,
   ChevronRight,
 } from "lucide-react";
@@ -55,7 +54,7 @@ export function Hero({ onOpenResume }: { onOpenResume: () => void }) {
           </h1>
 
           <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-300/90 leading-relaxed font-sans">
-            Computer Science student & AI Developer specializing in Machine Learning, RAG pipelines, Computer Vision, and full-stack software development.
+            I design and develop intelligent AI-powered applications using Agentic AI, GraphRAG, Generative AI, Computer Vision, and modern backend technologies.
           </p>
         </motion.div>
 
@@ -71,7 +70,7 @@ export function Hero({ onOpenResume }: { onOpenResume: () => void }) {
             className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-mono font-bold text-sm tracking-wide shadow-[0_0_25px_rgba(0,245,255,0.4)] hover:shadow-[0_0_35px_rgba(0,245,255,0.7)] hover:scale-105 active:scale-95 transition-all duration-300"
           >
             <Sparkles className="w-4 h-4 text-black group-hover:rotate-12 transition-transform" />
-            <span>VIEW PROJECTS</span>
+            <span>EXPLORE PROJECTS</span>
             <ChevronRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
           </a>
 
@@ -80,7 +79,7 @@ export function Hero({ onOpenResume }: { onOpenResume: () => void }) {
             className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#0a102a]/80 hover:bg-[#0f173d] text-zinc-100 border border-white/10 hover:border-cyan-400/50 backdrop-blur-md font-mono text-sm tracking-wide hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
           >
             <FileText className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300" />
-            <span>VIEW RESUME</span>
+            <span>DOWNLOAD RESUME</span>
           </button>
         </motion.div>
 

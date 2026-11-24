@@ -1,20 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 import {
   Terminal,
   Play,
-  RotateCcw,
-  Sparkles,
-  Zap,
   Activity,
-  Cpu,
-  CheckCircle2,
   Sliders,
-  ChevronDown,
 } from "lucide-react";
-import { PORTFOLIO_DATA, PlaygroundModel } from "@/data/portfolioData";
+import { PORTFOLIO_DATA, type PlaygroundModel } from "@/data/portfolioData";
+import Link from "next/link";
 
 export function MLPlayground() {
   const [selectedModel, setSelectedModel] = useState<PlaygroundModel>(
@@ -24,19 +18,12 @@ export function MLPlayground() {
   const [isInferencing, setIsInferencing] = useState(false);
   const [streamedText, setStreamedText] = useState<string>("");
   const [logLines, setLogLines] = useState<string[]>([]);
-  const [metrics, setMetrics] = useState({
-    latency: 0,
-    tokensPerSec: 0,
-    confidence: 0,
-    vram: 0,
-  });
 
   const handleModelChange = (model: PlaygroundModel) => {
     setSelectedModel(model);
     setUserPrompt(model.defaultPrompt);
     setStreamedText("");
     setLogLines([]);
-    setMetrics({ latency: 0, tokensPerSec: 0, confidence: 0, vram: 0 });
   };
 
   const runInference = () => {
@@ -70,12 +57,6 @@ export function MLPlayground() {
           ...prev,
           `[COMPLETED] Pipeline execution finished successfully.`,
         ]);
-        setMetrics({
-          latency: template.latencyMs,
-          tokensPerSec: template.tokensPerSec,
-          confidence: template.confidence,
-          vram: template.vramMb,
-        });
       }
     }, 45);
   };
@@ -89,14 +70,23 @@ export function MLPlayground() {
       <div className="flex flex-col items-center text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
           <Terminal className="w-3.5 h-3.5" />
-          <span>INTERACTIVE DEMOS</span>
+          <span>ENGINEERING LAB · SIMULATED WORKFLOWS</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Interactive Project Demos
+          Engineering Lab
         </h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl font-sans">
-          Test simulated query workflows and pipeline execution traces from my featured projects in real time.
+          These browser-only workflows display scripted examples. They do not call project backends or run AI models. Choose a project to inspect its workflow.
         </p>
+      </div>
+
+      <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {PORTFOLIO_DATA.projects.map((project) => (
+          <Link key={project.slug} href={`/projects/${project.slug}`} className="rounded-2xl border border-white/10 bg-[#060a1d]/80 p-4 transition-colors hover:border-cyan-400/40">
+            <span className="block text-sm font-semibold text-white">{project.title}</span>
+            <span className="mt-2 block font-mono text-xs text-amber-300">{project.demoStatus}</span>
+          </Link>
+        ))}
       </div>
 
       {/* Main Terminal Window */}
@@ -110,7 +100,7 @@ export function MLPlayground() {
               <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
             </div>
             <span className="text-xs font-mono text-cyan-300">
-              project_demo_console://pipeline-runner
+              simulated_demo_console://scripted-workflow
             </span>
           </div>
 
@@ -237,36 +227,7 @@ export function MLPlayground() {
               </div>
             </div>
 
-            {/* Performance Metric Gauges */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-[10px] font-mono text-zinc-400">LATENCY</div>
-                <div className="text-base font-bold font-mono text-cyan-300 mt-1">
-                  {metrics.latency ? `${metrics.latency} ms` : "--"}
-                </div>
-              </div>
-
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-[10px] font-mono text-zinc-400">SPEED</div>
-                <div className="text-base font-bold font-mono text-purple-300 mt-1">
-                  {metrics.tokensPerSec ? `${metrics.tokensPerSec} tok/s` : "--"}
-                </div>
-              </div>
-
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-[10px] font-mono text-zinc-400">CONFIDENCE</div>
-                <div className="text-base font-bold font-mono text-emerald-300 mt-1">
-                  {metrics.confidence ? `${(metrics.confidence * 100).toFixed(1)}%` : "--"}
-                </div>
-              </div>
-
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-[10px] font-mono text-zinc-400">MEMORY PROFILE</div>
-                <div className="text-base font-bold font-mono text-amber-300 mt-1">
-                  {metrics.vram ? `${metrics.vram} MB` : "--"}
-                </div>
-              </div>
-            </div>
+            <p className="rounded-xl border border-amber-400/20 bg-amber-950/20 p-4 text-xs leading-5 text-amber-100">Scripted demonstration only. Output is illustrative and does not report actual model execution, latency, confidence, or memory use.</p>
           </div>
         </div>
       </div>

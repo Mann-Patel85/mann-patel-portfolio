@@ -1,30 +1,18 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useSyncExternalStore } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Starfield } from "./Starfield";
 import { NeuralConstellation } from "./NeuralConstellation";
 import { NebulaGlow } from "./NebulaGlow";
 
 export function SpaceScene() {
-  const [isMounted, setIsMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+  const subscribe = useCallback((callback: () => void) => {
+    window.addEventListener("resize", callback);
+    return () => window.removeEventListener("resize", callback);
   }, []);
-
-  if (!isMounted) {
-    return (
-      <div className="fixed inset-0 -z-10 bg-[#04060f] pointer-events-none" />
-    );
-  }
+  const getSnapshot = useCallback(() => window.innerWidth < 768, []);
+  const isMobile = useSyncExternalStore(subscribe, getSnapshot, () => false);
 
   return (
     <div className="fixed inset-0 -z-10 bg-[#030611] pointer-events-none transition-opacity duration-1000">

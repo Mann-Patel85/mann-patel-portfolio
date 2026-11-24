@@ -11,10 +11,9 @@ interface StarfieldProps {
 export function Starfield({ count = 1500 }: StarfieldProps) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  const [positions, colors, sizes] = useMemo(() => {
+  const [positions, colors] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
-    const sz = new Float32Array(count);
 
     const colorPalette = [
       new THREE.Color("#ffffff"),
@@ -24,24 +23,28 @@ export function Starfield({ count = 1500 }: StarfieldProps) {
       new THREE.Color("#7000ff"),
     ];
 
+    const sample = (index: number, salt: number) => {
+      const value = Math.sin((index + 1) * 127.1 + salt * 311.7) * 43758.5453;
+      return value - Math.floor(value);
+    };
+
     for (let i = 0; i < count; i++) {
-      const radius = 25 + Math.random() * 45;
-      const theta = 2 * Math.PI * Math.random();
-      const phi = Math.acos(2 * Math.random() - 1);
+      const radius = 25 + sample(i, 1) * 45;
+      const theta = 2 * Math.PI * sample(i, 2);
+      const phi = Math.acos(2 * sample(i, 3) - 1);
 
       pos[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
       pos[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 50;
+      pos[i * 3 + 2] = (sample(i, 4) - 0.5) * 50;
 
-      const baseColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+      const baseColor = colorPalette[Math.floor(sample(i, 5) * colorPalette.length)];
       col[i * 3] = baseColor.r;
       col[i * 3 + 1] = baseColor.g;
       col[i * 3 + 2] = baseColor.b;
 
-      sz[i] = Math.random() * 2.2 + 0.4;
     }
 
-    return [pos, col, sz];
+    return [pos, col];
   }, [count]);
 
   useFrame((state, delta) => {

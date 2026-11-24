@@ -7,18 +7,19 @@ import {
   BrainCircuit,
   Server,
   Cpu,
-  Layers,
   Sparkles,
-  CheckCircle2,
-  Terminal,
 } from "lucide-react";
-import { PORTFOLIO_DATA, SkillItem } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { useNeural } from "@/context/NeuralContext";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   dl: <Boxes className="w-5 h-5 text-cyan-400" />,
   ml: <BrainCircuit className="w-5 h-5 text-purple-400" />,
   infra: <Server className="w-5 h-5 text-emerald-400" />,
+  backend: <Server className="w-5 h-5 text-emerald-400" />,
+  generative: <Boxes className="w-5 h-5 text-cyan-400" />,
+  databases: <Server className="w-5 h-5 text-blue-400" />,
+  tools: <Cpu className="w-5 h-5 text-amber-400" />,
   languages: <Cpu className="w-5 h-5 text-amber-400" />,
 };
 

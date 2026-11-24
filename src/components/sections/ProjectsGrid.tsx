@@ -1,14 +1,11 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Code2,
   ExternalLink,
-  FileText,
-  Activity,
-  Layers,
-  Sparkles,
   Zap,
   CheckCircle2,
   ChevronRight,
@@ -80,8 +77,8 @@ function TiltProjectCard({
             <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-400/20 text-cyan-400">
               <Zap className="w-4 h-4" />
             </div>
-            <span className="text-xs font-mono font-semibold tracking-wider text-cyan-400 uppercase">
-              {project.tagline}
+            <span className="text-xs font-mono font-semibold tracking-wider text-cyan-400 uppercase line-clamp-2">
+              {project.slug === "graphscout" ? "FLAGSHIP | " : ""}{project.tagline}
             </span>
           </div>
 
@@ -131,7 +128,7 @@ function TiltProjectCard({
           </div>
         </div>
 
-        {/* Performance Benchmark Matrix */}
+        {/* Project-reported technical details */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
           {project.metrics.map((m, idx) => (
             <div
@@ -166,14 +163,11 @@ function TiltProjectCard({
           className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 font-semibold cursor-pointer"
         >
           <Info className="w-3.5 h-3.5" />
-          <span>View Architecture Details</span>
+          <span>Quick architecture view</span>
           <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </button>
 
-        <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          Production Ready
-        </span>
+        <Link href={`/projects/${project.slug}`} className="text-[11px] font-mono text-cyan-300 hover:text-white">Project details →</Link>
       </div>
     </motion.div>
   );
@@ -197,13 +191,13 @@ export function ProjectsGrid() {
           Featured Projects
         </h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl font-sans">
-          A selection of real-world machine learning systems, computer vision applications, and full-stack web platforms.
+          Six AI and full-stack engineering projects, with GraphScout featured as the flagship.
         </p>
       </div>
 
       {/* Grid of Projects */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {PORTFOLIO_DATA.projects.map((project) => (
+        {[...PORTFOLIO_DATA.projects].sort((a, b) => Number(b.featured) - Number(a.featured) || Number(b.slug === "graphscout") - Number(a.slug === "graphscout")).map((project) => (
           <TiltProjectCard
             key={project.id}
             project={project}

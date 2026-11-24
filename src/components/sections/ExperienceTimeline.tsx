@@ -12,7 +12,7 @@ import {
   MapPin,
   CheckCircle2,
 } from "lucide-react";
-import { PORTFOLIO_DATA, ExperienceItem } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 const TYPE_ICONS: Record<string, React.ReactNode> = {
   Work: <Briefcase className="w-4 h-4" />,
@@ -38,7 +38,7 @@ export function ExperienceTimeline() {
           Experience & Education
         </h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl font-sans">
-          My professional background, technical internships, and academic milestones.
+          An AI internship, independent engineering projects, and academic milestones.
         </p>
       </div>
 
@@ -60,7 +60,7 @@ export function ExperienceTimeline() {
 
             {/* Content Glass Card */}
             <div className="p-6 sm:p-7 rounded-2xl bg-[#060a1d]/80 border border-white/10 group-hover:border-cyan-400/40 backdrop-blur-xl transition-all duration-300 shadow-xl group-hover:shadow-[0_8px_30px_rgba(0,245,255,0.1)]">
-              {/* Header: Period + Role + Org */}
+            {/* Header: Period + Role + Organization / project context */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/5">
                 <div>
                   <div className="flex items-center gap-2">
@@ -77,7 +77,7 @@ export function ExperienceTimeline() {
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-white mt-2 font-mono">
                     {item.role}{" "}
-                    <span className="text-cyan-400 font-semibold">@ {item.organization}</span>
+                    <span className="text-cyan-400 font-semibold">· {item.organization}</span>
                   </h3>
                 </div>
 
@@ -145,7 +145,7 @@ export function ExperienceTimeline() {
                 </div>
 
                 <div className="text-xs font-mono text-cyan-300 px-3 py-1 rounded-lg bg-cyan-950/40 border border-cyan-500/20 w-fit">
-                  {edu.honors}
+                  {edu.honors} · Final-Year Student
                 </div>
               </div>
 

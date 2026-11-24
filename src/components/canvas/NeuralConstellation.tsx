@@ -5,12 +5,14 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useNeural } from "@/context/NeuralContext";
 
+type NeuralCategory = "ml" | "generative" | "backend" | "languages" | "databases" | "tools";
+
 interface NodeData {
   basePos: THREE.Vector3;
   currentPos: THREE.Vector3;
   velocity: THREE.Vector3;
   layer: number;
-  category: "dl" | "ml" | "infra" | "languages";
+  category: NeuralCategory;
   pulsePhase: number;
   size: number;
 }
@@ -21,21 +23,25 @@ export function NeuralConstellation({ count = 120 }: { count?: number }) {
   const linesRef = useRef<THREE.LineSegments>(null);
 
   // Generate neural nodes in layered 3D clusters
-  const { nodes, categories } = useMemo(() => {
+  const { nodes } = useMemo(() => {
     const nodeList: NodeData[] = [];
-    const catList: ("dl" | "ml" | "infra" | "languages")[] = ["dl", "ml", "infra", "languages"];
+    const catList: NeuralCategory[] = ["ml", "generative", "backend", "languages", "databases", "tools"];
+    const sample = (index: number, salt: number) => {
+      const value = Math.sin((index + 1) * 127.1 + salt * 311.7) * 43758.5453;
+      return value - Math.floor(value);
+    };
 
     for (let i = 0; i < count; i++) {
-      const layer = Math.floor((i / count) * 4);
-      const cat = catList[layer % 4];
+      const layer = Math.floor((i / count) * catList.length);
+      const cat = catList[layer % catList.length];
 
       // Cluster nodes in a curved 3D manifold
-      const u = Math.random() * Math.PI * 2;
-      const v = (Math.random() - 0.5) * Math.PI;
-      const radius = 6 + Math.random() * 8;
+      const u = sample(i, 1) * Math.PI * 2;
+      const v = (sample(i, 2) - 0.5) * Math.PI;
+      const radius = 6 + sample(i, 3) * 8;
 
       const x = radius * Math.cos(v) * Math.cos(u) + (layer - 1.5) * 3;
-      const y = radius * Math.sin(v) * 0.8 + (Math.random() - 0.5) * 4;
+      const y = radius * Math.sin(v) * 0.8 + (sample(i, 4) - 0.5) * 4;
       const z = radius * Math.cos(v) * Math.sin(u) * 0.6 - 2;
 
       nodeList.push({
@@ -44,12 +50,12 @@ export function NeuralConstellation({ count = 120 }: { count?: number }) {
         velocity: new THREE.Vector3(0, 0, 0),
         layer,
         category: cat,
-        pulsePhase: Math.random() * Math.PI * 2,
-        size: 0.15 + Math.random() * 0.25,
+        pulsePhase: sample(i, 5) * Math.PI * 2,
+        size: 0.15 + sample(i, 6) * 0.25,
       });
     }
 
-    return { nodes: nodeList, categories: catList };
+    return { nodes: nodeList };
   }, [count]);
 
   // Buffer geometries for points & lines
@@ -60,12 +66,14 @@ export function NeuralConstellation({ count = 120 }: { count?: number }) {
   const pointColors = useMemo(() => new Float32Array(count * 3), [count]);
 
   // Category color mapping
-  const categoryColorMap = useMemo(
+  const categoryColorMap = useMemo<Record<NeuralCategory, THREE.Color>>(
     () => ({
-      dl: new THREE.Color("#00f5ff"), // Cyan
+      generative: new THREE.Color("#00f5ff"), // Cyan
       ml: new THREE.Color("#a855f7"), // Purple / Violet
-      infra: new THREE.Color("#10b981"), // Emerald
+      backend: new THREE.Color("#10b981"), // Emerald
       languages: new THREE.Color("#f59e0b"), // Amber
+      databases: new THREE.Color("#38bdf8"),
+      tools: new THREE.Color("#fb923c"),
     }),
     []
   );
@@ -73,7 +81,9 @@ export function NeuralConstellation({ count = 120 }: { count?: number }) {
   const defaultNodeColor = useMemo(() => new THREE.Color("#6366f1"), []);
   const highlightColor = useMemo(() => new THREE.Color("#00ffff"), []);
 
-  useFrame((state, delta) => {
+  // Three.js buffers and node vectors are intentionally updated in-place per frame.
+  /* eslint-disable react-hooks/immutability */
+  useFrame((state) => {
     const time = state.clock.getElapsedTime();
     const mouseX = (state.pointer.x * state.viewport.width) / 2;
     const mouseY = (state.pointer.y * state.viewport.height) / 2;
@@ -185,6 +195,7 @@ export function NeuralConstellation({ count = 120 }: { count?: number }) {
       linesRef.current.geometry.attributes.color.needsUpdate = true;
     }
   });
+  /* eslint-enable react-hooks/immutability */
 
   return (
     <group position={[0, 0, -2]}>

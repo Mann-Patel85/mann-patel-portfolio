@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { NeuralProvider } from "@/context/NeuralContext";
 import { Navbar } from "@/components/ui/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { AboutSection } from "@/components/sections/AboutSection";
 import { SkillsMatrix } from "@/components/sections/SkillsMatrix";
 import { ProjectsGrid } from "@/components/sections/ProjectsGrid";
 import { MLPlayground } from "@/components/sections/MLPlayground";
@@ -37,6 +38,7 @@ export default function Home() {
       {/* Main Single Page Portfolio Content */}
       <main className="relative z-10 flex flex-col min-h-screen">
         <Hero onOpenResume={() => setIsResumeOpen(true)} />
+        <AboutSection />
         <SkillsMatrix />
         <ProjectsGrid />
         <MLPlayground />

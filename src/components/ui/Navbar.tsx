@@ -16,7 +16,7 @@ import {
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 const NAV_ITEMS = [
-  { label: "About", href: "#overview", icon: Brain },
+  { label: "About", href: "#about", icon: Brain },
   { label: "Skills", href: "#skills", icon: Cpu },
   { label: "Projects", href: "#projects", icon: Code2 },
   { label: "Demos", href: "#playground", icon: Terminal },
@@ -128,6 +128,8 @@ export function Navbar({ onOpenResume }: { onOpenResume: () => void }) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-1.5 text-zinc-400 hover:text-white rounded-lg bg-white/5 border border-white/10"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
@@ -139,6 +141,7 @@ export function Navbar({ onOpenResume }: { onOpenResume: () => void }) {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

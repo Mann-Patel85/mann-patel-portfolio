@@ -1,14 +1,15 @@
 export interface SkillItem {
   name: string;
-  level: number; // 0-100
+  level?: number;
   icon?: string;
-  category: "dl" | "ml" | "infra" | "languages";
+  category: string;
   highlightColor?: string;
   description: string;
 }
 
 export interface ProjectItem {
   id: string;
+  slug: string;
   title: string;
   tagline: string;
   description: string;
@@ -27,6 +28,7 @@ export interface ProjectItem {
   paperUrl?: string;
   architectureDetails: string[];
   gradient: string;
+  demoStatus: "Live demo" | "Simulated workflow" | "Coming soon";
 }
 
 export interface ExperienceItem {
@@ -76,69 +78,60 @@ export interface PlaygroundModel {
 export const PORTFOLIO_DATA = {
   personal: {
     name: "Mann Patel",
-    role: "AI / ML Developer & Software Engineer",
+    role: "AI/ML Engineer | Generative AI Developer",
     phone: "+91 9824804372",
     objective: "Results-driven Computer Engineering student (9.27 CGPA) seeking an AI/ML Developer role. Proven experience building autonomous multi-agent systems, RAG pipelines, and computer vision applications with Python, PyTorch, and Next.js.",
     statusBadge: "Available for Full-Time Roles & Internships",
-    location: "Ahmedabad, Gujarat / Remote",
-    tagline: "Building intelligent AI systems, robust RAG pipelines, and full-stack software applications.",
-    bio: "Computer Science & Engineering student at Silver Oak College of Technology with a 9.27 CGPA. Experienced in developing machine learning models, retrieval-augmented generation (RAG) pipelines, computer vision systems with OpenCV and YOLOv8, and full-stack applications with FastAPI, Next.js, and React.",
+    location: "Ahmedabad, Gujarat, India",
+    tagline: "Building Intelligent AI Systems & Scalable Applications",
+    bio: "I am Mann Patel, a final-year B.Tech Computer Science and Engineering student at Silver Oak College of Technology, Ahmedabad, with a CGPA of 9.27. I am passionate about Artificial Intelligence, Machine Learning, and Generative AI, with a particular interest in building practical intelligent applications. My project experience includes autonomous multi-agent systems, Graph-based Retrieval-Augmented Generation, hierarchical document retrieval, multimodal AI, computer vision, and privacy-focused local AI applications. I enjoy exploring emerging technologies, designing system architectures, solving engineering challenges, and transforming complex ideas into functional applications. My career objective is to contribute as an AI/ML Engineer or Generative AI Developer, building reliable, intelligent, and impactful applications.",
     metrics: [
-      { label: "Academic CGPA", value: "9.27 / 10", change: "Top Percentile" },
-      { label: "Production Projects", value: "6+ Built", change: "Full-Stack & AI" },
-      { label: "Core AI Stack", value: "Python / PyTorch", change: "FastAPI & RAG" },
-      { label: "Open Source", value: "Active Repos", change: "GitHub Projects" },
+      { label: "Academic Performance", value: "9.27 / 10", change: "B.Tech CSE" },
+      { label: "Project Portfolio", value: "6 Projects", change: "AI & Full-Stack" },
+      { label: "Specialization", value: "AI / GenAI", change: "Agentic Systems & RAG" },
+      { label: "Engineering Stack", value: "Python / FastAPI", change: "AI Backend Development" },
     ],
     socials: {
       github: "https://github.com/Mann-Patel85",
       linkedin: "https://linkedin.com/in/mannpatel",
-      huggingface: "https://huggingface.co",
-      kaggle: "https://kaggle.com",
-      x: "https://x.com",
+      huggingface: "",
+      kaggle: "",
+      x: "",
       email: "mann6657@gmail.com",
-      scholar: "https://scholar.google.com",
+      scholar: "",
     },
   },
 
   skills: [
-    // Deep Learning & AI
-    { name: "PyTorch & Deep Learning", level: 88, category: "dl", highlightColor: "#EE4C2C", description: "Neural network architectures, tensor operations, model training & transfer learning" },
-    { name: "TensorFlow & Keras", level: 86, category: "dl", highlightColor: "#FF6F00", description: "Deep neural networks, recurrent networks (LSTMs), and sequence modeling" },
-    { name: "Generative AI & LLMs", level: 90, category: "dl", highlightColor: "#8B5CF6", description: "Google Gemini API, prompt engineering, multimodal reasoning & embeddings" },
-    { name: "Agentic Systems & LlamaIndex", level: 87, category: "dl", highlightColor: "#00F5FF", description: "Autonomous agent loops, tool calling, multi-agent workflows & task execution" },
-
-    // Core ML, Vision & NLP
-    { name: "Machine Learning (Scikit-Learn)", level: 89, category: "ml", highlightColor: "#F59E0B", description: "Supervised & unsupervised learning, classification, regression & model evaluation" },
-    { name: "Computer Vision (OpenCV & YOLOv8)", level: 90, category: "ml", highlightColor: "#10B981", description: "Real-time object detection, facial recognition, video processing & feature extraction" },
-    { name: "Natural Language Processing (NLP)", level: 87, category: "ml", highlightColor: "#A855F7", description: "Text classification, tokenization, embeddings, TF-IDF & conversational interfaces" },
-    { name: "RAG & Vector Databases", level: 89, category: "ml", highlightColor: "#06B6D4", description: "Retrieval-Augmented Generation, vector embeddings, ChromaDB & semantic search" },
-
-    // Backend, Web & Tools
-    { name: "FastAPI & REST APIs", level: 91, category: "infra", highlightColor: "#009688", description: "High-performance asynchronous endpoints, Pydantic validation & API design" },
-    { name: "Next.js & React", level: 88, category: "infra", highlightColor: "#38BDF8", description: "Modern responsive web applications, component architecture & Tailwind CSS" },
-    { name: "Streamlit & Gradio", level: 90, category: "infra", highlightColor: "#FF7C00", description: "Rapid prototyping, interactive AI demo applications & evaluation dashboards" },
-    { name: "Docker & Containerization", level: 85, category: "infra", highlightColor: "#2496ED", description: "Containerized application deployment, Dockerfiles & multi-container environments" },
-
-    // Programming Languages
-    { name: "Python", level: 92, category: "languages", highlightColor: "#3776AB", description: "AsyncIO, data structures, scientific computing (NumPy, Pandas) & AI ecosystem" },
-    { name: "C / C++", level: 84, category: "languages", highlightColor: "#00599C", description: "Data structures & algorithms, memory management & object-oriented programming" },
-    { name: "JavaScript / TypeScript", level: 86, category: "languages", highlightColor: "#3178C6", description: "Modern ES6+, TypeScript type safety, web development & frontend frameworks" },
-    { name: "SQL & Relational Databases", level: 87, category: "languages", highlightColor: "#F59E0B", description: "Relational database schema design, SQL querying, PostgreSQL & SQLite" },
+    { name: "Python, C++, Java, C, JavaScript", category: "languages", highlightColor: "#3776AB", description: "Programming languages used across AI, backend, and web projects." },
+    { name: "Machine Learning & Deep Learning", category: "ml", highlightColor: "#F59E0B", description: "Applied machine learning, deep learning, and model workflows." },
+    { name: "Computer Vision · OpenCV · DeepFace · TensorFlow", category: "ml", highlightColor: "#10B981", description: "Vision and learning tools used in project work, including video and face processing." },
+    { name: "LLMs · Agentic AI · CrewAI · Gemini", category: "generative", highlightColor: "#8B5CF6", description: "Generative AI and multi-agent application development." },
+    { name: "RAG · GraphRAG · LlamaIndex", category: "generative", highlightColor: "#00F5FF", description: "Hierarchical retrieval, graph retrieval, and orchestration workflows." },
+    { name: "FLUX.1", category: "generative", highlightColor: "#A855F7", description: "Image generation technology referenced in AgenticMarketer." },
+    { name: "FastAPI · Streamlit · React · Next.js", category: "backend", highlightColor: "#009688", description: "Frameworks used to build APIs, interactive tools, and web interfaces." },
+    { name: "HTML · CSS", category: "backend", highlightColor: "#38BDF8", description: "Web interface foundations." },
+    { name: "MySQL · ChromaDB · TigerGraph · GSQL", category: "databases", highlightColor: "#F59E0B", description: "Relational, vector, and graph database technologies used in projects." },
+    { name: "Git · GitHub · Docker · AWS · Cloudflare", category: "tools", highlightColor: "#2496ED", description: "Development and infrastructure tools used in project workflows." },
+    { name: "Pillow · Figma", category: "tools", highlightColor: "#FF7C00", description: "Image handling and interface design tools." },
   ] as SkillItem[],
 
   skillCategories: [
-    { id: "dl", title: "Deep Learning & AI", icon: "Boxes", color: "from-cyan-500 to-blue-600" },
-    { id: "ml", title: "Machine Learning & Vision", icon: "BrainCircuit", color: "from-purple-500 to-indigo-600" },
-    { id: "infra", title: "Backend & Web Dev", icon: "Server", color: "from-emerald-500 to-teal-600" },
+    { id: "ml", title: "AI / Machine Learning", icon: "BrainCircuit", color: "from-purple-500 to-indigo-600" },
+    { id: "generative", title: "Generative AI & Agentic Systems", icon: "Boxes", color: "from-cyan-500 to-blue-600" },
+    { id: "backend", title: "Backend & Frontend", icon: "Server", color: "from-emerald-500 to-teal-600" },
     { id: "languages", title: "Programming Languages", icon: "Cpu", color: "from-amber-500 to-rose-600" },
+    { id: "databases", title: "Databases & Graph Technologies", icon: "Server", color: "from-blue-500 to-cyan-600" },
+    { id: "tools", title: "Tools & Infrastructure", icon: "Cpu", color: "from-amber-500 to-orange-600" },
   ],
 
   projects: [
     {
       id: "project-agentic-marketer",
+      slug: "agenticmarketer",
       title: "AgenticMarketer",
       tagline: "Autonomous Multi-Agent Marketing Intelligence & Omnichannel Publisher",
-      description: "An enterprise-grade autonomous 6-agent cooperative swarm that ingests brand documentation via RAG, conducts live market research with DuckDuckGo, drafts 12 tailored copy formats, generates FLUX.1 diffusion banners, and publishes across 15 social platforms.",
+      description: "An autonomous six-agent marketing intelligence system combining brand-specific RAG, live market research, multi-channel copywriting, FLUX.1 image generation, SEO auditing, and social publishing workflows.",
       problemSolution: {
         problem: "Modern marketing workflows suffer from brand inconsistency, fragmented multi-tool subscriptions, manual adaptation across 12+ channels, and lack of real-time market/competitor research.",
         solution: "Orchestrated a 6-agent pipeline (Brand Retrieval, Live Web Research, Multi-Channel Copywriter, Multimodal FLUX.1 Visual Designer, SEO/Readability Auditor, and Omnichannel Social Publisher) with hybrid vector RAG."
@@ -146,11 +139,12 @@ export const PORTFOLIO_DATA = {
       metrics: [
         { label: "Autonomous Swarm", value: "6 AI Agents" },
         { label: "Content Formats", value: "12 Channels" },
-        { label: "Social Networks", value: "15 Platforms" },
-        { label: "Visual Banner Res", value: "1024x1024 FLUX.1" }
+        { label: "Social Publishing", value: "Workflow" },
+        { label: "Image Generation", value: "FLUX.1" }
       ],
       tags: ["FastAPI", "Next.js 16", "Google Gemini", "FLUX.1 Diffusion", "Hybrid RAG", "DuckDuckGo API", "textstat", "JWT RBAC"],
-      featured: true,
+      featured: false,
+      demoStatus: "Live demo",
       githubUrl: "https://github.com/Mann-Patel85/AgenticMarketer-Automated-Marketing-Intelligence",
       demoUrl: "https://agentic-marketer-automated-marketin.vercel.app/",
       architectureDetails: [
@@ -164,9 +158,10 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "project-graphscout",
+      slug: "graphscout",
       title: "GraphScout: Agentic GraphRAG",
       tagline: "Autonomous Multi-Hop Graph Investigation & GSQL Engine",
-      description: "An autonomous multi-agent GraphRAG system engineered for the TigerGraph Agentic GraphRAG Hackathon (via Unstop). Decomposes complex multi-hop queries across 2,951 Olympic documents (5.46M tokens), dynamically traversing N-hop TigerGraph subgraphs via GSQL while enforcing a 3-way benchmark against standard vector RAG and static GraphRAG.",
+      description: "An autonomous multi-agent GraphRAG system engineered for the TigerGraph Agentic GraphRAG Hackathon via Unstop. It investigates complex multi-hop queries across an Olympic document corpus using dynamic N-hop graph traversal and GSQL-powered retrieval.",
       problemSolution: {
         problem: "Standard vector RAG fails at multi-hop relational queries, and static GraphRAG collapses on temporal chains and N-hop aggregations.",
         solution: "Engineered an autonomous Orchestrator Agent loop with Pydantic v2 InvestigationState, dynamic GSQL graph traversal, gap detection, and 3-way benchmark evaluation (Accuracy, Completeness, Token Budgeting)."
@@ -179,6 +174,7 @@ export const PORTFOLIO_DATA = {
       ],
       tags: ["TigerGraph", "GSQL", "Agentic GraphRAG", "Python", "Streamlit", "Multi-Agent Swarm", "REST++"],
       featured: true,
+      demoStatus: "Simulated workflow",
       githubUrl: "https://github.com/Mann-Patel85/GraphScout-Agentic-GraphRAG",
       architectureDetails: [
         "TigerGraph GSQL Graph Schema with Document, Chunk, Entity, and Event vertices + 5 directional edge types",
@@ -190,9 +186,10 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "project-enterprise-rag",
+      slug: "document-auditor",
       title: "Enterprise RAG: Document Auditor",
       tagline: "Hierarchical Auto-Merging RAG & Compliance Intelligence",
-      description: "An enterprise-grade agentic RAG auditor for complex legal contracts (MSAs, SLAs, Privacy Policies) built on LlamaIndex and Google Gemini 2.5 Flash, utilizing 3-tier hierarchical tree indexing (2048t/512t/128t) and Auto-Merging Retrieval to eliminate context loss.",
+      description: "An enterprise-oriented agentic RAG auditor for complex legal documents such as MSAs, SLAs, and Privacy Policies, built using LlamaIndex and Google Gemini 2.5 Flash.",
       problemSolution: {
         problem: "Naive flat-chunk RAG pipelines fragment multi-page legal agreements, losing crucial contract liability caps, indemnification terms, and surrounding context.",
         solution: "Engineered a 3-tier HierarchicalNodeParser with ChromaDB vector indexing on 128-token leaf nodes and dynamic auto-merging to 512/2048-token parent nodes for high-fidelity compliance auditing."
@@ -201,10 +198,11 @@ export const PORTFOLIO_DATA = {
         { label: "RAG Architecture", value: "3-Tier Tree" },
         { label: "Embedding Dims", value: "3,072 Dims" },
         { label: "Vector Database", value: "ChromaDB" },
-        { label: "Context Retention", value: "100% Auto-Merge" }
+        { label: "Retrieval", value: "Auto-Merging" }
       ],
       tags: ["LlamaIndex", "Gemini 2.5 Flash", "ChromaDB", "Hierarchical RAG", "AutoMergingRetriever", "Python", "PDFReader"],
       featured: true,
+      demoStatus: "Simulated workflow",
       githubUrl: "https://github.com/Mann-Patel85/Enterprise-RAG-Agentic-Document-Auditor",
       architectureDetails: [
         "3-Tier Hierarchical Parsing: 2048-token Root Nodes -> 512-token Mid Nodes -> 128-token Search Leaf Nodes",
@@ -216,9 +214,10 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "project-locustriage-ai",
+      slug: "locustriage",
       title: "LocusTriage AI",
       tagline: "Intelligent Municipal Hazard Triage & Spatial Command Center",
-      description: "An AI-powered civic hazard triage and municipal dispatch system engineered for Indian Municipal Corporations (AMC, BMC, MCD, BBMP) utilizing Google Gemini 2.5 Flash multimodal vision, EXIF GPS coordinate extraction, 1-10 Urgency Scoring, and interactive Leaflet geospatial mapping.",
+      description: "An AI-assisted civic hazard triage system that analyzes submitted images, assigns urgency scores, extracts available EXIF GPS coordinates, and visualizes incidents on an interactive map.",
       problemSolution: {
         problem: "Traditional 311 municipal grievance portals suffer from slow manual classification, delayed response for fatal civic hazards (open manholes, live dangling power cables, water/gas leaks), and lack of visual urgency verification.",
         solution: "Engineered an instant AI triage pipeline using Google Gemini 2.5 Flash to visually evaluate hazard photos, assign a 1-10 severity score, extract GPS coordinates, and route incidents to municipal field teams via a live interactive geospatial command center."
@@ -226,11 +225,12 @@ export const PORTFOLIO_DATA = {
       metrics: [
         { label: "Vision Engine", value: "Gemini 2.5 Flash" },
         { label: "Severity Scoring", value: "1 to 10 Scale" },
-        { label: "Municipal Reach", value: "6 Metro Corps" },
+        { label: "Incident Workflow", value: "Municipal Triage" },
         { label: "Full-Stack Setup", value: "Docker Compose" }
       ],
       tags: ["FastAPI", "Next.js 16", "Gemini 2.5 Flash", "Leaflet Maps", "SQLAlchemy", "Pydantic v2", "Docker", "Pillow EXIF"],
       featured: true,
+      demoStatus: "Coming soon",
       githubUrl: "https://github.com/Mann-Patel85/LocusTriage-AI",
       architectureDetails: [
         "Google Gemini 2.5 Flash vision engine parsing hazard photos to compute 1-10 Urgency Score & diagnostic summary",
@@ -243,21 +243,23 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "project-nexusshare-ai",
+      slug: "nexusshare",
       title: "NexusShare AI",
       tagline: "Zero-Cloud P2P Network AI Intelligence & Steganography Vault",
-      description: "A private, zero-cloud peer-to-peer local Wi-Fi file sharing ecosystem featuring OpenCV facial biometric authentication, on-device ML document classification across 7 domains, local zero-cloud AI Q&A, and LSB image steganography encryption.",
+      description: "A local peer-to-peer file-sharing application featuring face verification, on-device document classification, offline question answering, image steganography, and expiring shares.",
       problemSolution: {
         problem: "Cloud file sharing exposes sensitive enterprise documents to third-party data breaches, incurs high internet bandwidth overhead, and risks unauthorized access on local networks.",
         solution: "Built a high-speed local intranet platform with OpenCV Haar Cascade facial verification, offline TF-IDF NLP document Q&A, image steganography hiding payloads inside pixel bytes, and self-destruct ghost shares."
       },
       metrics: [
-        { label: "Privacy Rating", value: "100% Zero-Cloud" },
+        { label: "Deployment Model", value: "Local Network" },
         { label: "ML Classifier", value: "7 Domains" },
-        { label: "Face Match Acc", value: ">72% 128D Cosine" },
+        { label: "Face Verification", value: "OpenCV-based" },
         { label: "Network Telemetry", value: "Live WebSockets" }
       ],
       tags: ["Python FastAPI", "React 19 Vite", "OpenCV", "Scikit-Learn", "WebSockets", "Steganography", "psutil", "SHA-256"],
-      featured: true,
+      featured: false,
+      demoStatus: "Coming soon",
       githubUrl: "https://github.com/Mann-Patel85/NexusShare-AI",
       architectureDetails: [
         "OpenCV Haar Cascade face detection with 128-dimensional spatial histogram extraction & single-use token issuance",
@@ -270,6 +272,7 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "project-facetrack",
+      slug: "facetrack",
       title: "FaceTrack: AI-Powered Attendance System",
       tagline: "Real-Time Biometric Face Recognition & Automated Attendance Tracking",
       description: "An end-to-end computer vision application built with Streamlit and OpenCV to process live video footage, automate attendance tracking, and generate real-time CSV reports. Implemented deep learning facial recognition utilizing VGG-Face to extract high-dimensional facial embeddings and match dynamic video frames against a secure image database.",
@@ -284,7 +287,8 @@ export const PORTFOLIO_DATA = {
         { label: "Report Generation", value: "Real-Time CSV" }
       ],
       tags: ["Python", "Streamlit", "OpenCV", "DeepFace", "VGG-Face", "Computer Vision", "Facial Biometrics"],
-      featured: true,
+      featured: false,
+      demoStatus: "Coming soon",
       githubUrl: "https://github.com/Mann-Patel85",
       architectureDetails: [
         "Real-time video frame capture and facial bounding box localization via OpenCV Haar Cascades",
@@ -300,16 +304,16 @@ export const PORTFOLIO_DATA = {
     {
       id: "exp-1",
       period: "2024 — Present",
-      role: "AI & Full-Stack Systems Engineer",
-      organization: "Autonomous Intelligence & Systems",
+      role: "Independent AI Engineering Projects",
+      organization: "Personal project work",
       location: "India / Remote",
-      type: "Work",
+      type: "Research",
       badgeColor: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10",
       description: [
         "Built GraphScout: an autonomous Agentic GraphRAG system utilizing TigerGraph GSQL, dynamic N-hop subgraph traversals, and 3-way RAG benchmarks.",
         "Architected Enterprise RAG Document Auditor: hierarchical 3-tier indexing (2048t/512t/128t) with LlamaIndex and Gemini 2.5 Flash.",
         "Engineered LocusTriage AI (Gemini 2.5 Flash vision & Leaflet) and AgenticMarketer (6-Agent Swarm with FLUX.1 diffusion).",
-        "Containerized production microservices with Docker Compose, FastAPI (SQLAlchemy 2.0), and Next.js 16."
+        "Developed full-stack prototypes with Docker Compose, FastAPI, SQLAlchemy, and Next.js."
       ],
       skillsUsed: ["TigerGraph", "GSQL", "LlamaIndex", "FastAPI", "Next.js 16", "Gemini 2.5 Flash", "ChromaDB", "Docker"]
     },
@@ -322,7 +326,7 @@ export const PORTFOLIO_DATA = {
       type: "Work",
       badgeColor: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
       description: [
-        "Engineered 4 production-grade AI applications covering NLP Machine Translation, Conversational FAQ Chatbots, Generative LSTM Music, and Real-Time YOLOv8 Object Tracking.",
+        "Completed AI development projects covering NLP translation, intent-matching chatbots, LSTM music generation, and YOLOv8 object tracking.",
         "GlobalConnect AI: Built Neural Machine Translator supporting 25+ languages with gTTS audio voice synthesis and document batch translation.",
         "NeuroMelody AI: Trained a 2-layer LSTM sequence model in TensorFlow/Keras & music21 to compose dynamic multi-instrument MIDI music tracks.",
         "YOLOv8 Pro: Deployed a real-time object detection & persistent tracking pipeline with live OpenCV analytics HUD (FPS, Track IDs) and Gradio Vision Studio."
@@ -458,7 +462,7 @@ export const PORTFOLIO_DATA = {
     {
       degree: "B. TECH in Computer Science & Engineering",
       institution: "Silver Oak College of Technology | Ahmedabad",
-      gpa: "9.27 CGPA (3rd Year)",
+      gpa: "9.27 CGPA",
       honors: "2023 — 2027",
       coursework: "Data Structures & Algorithms (DSA), Operating Systems (OS), Database Management Systems (DBMS), Computer Networks, Machine Learning, Deep Learning, Cloud Computing (AWS)."
     }

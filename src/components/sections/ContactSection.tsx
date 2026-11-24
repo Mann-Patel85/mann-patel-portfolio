@@ -4,16 +4,10 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Send,
-  Mail,
-  ExternalLink,
-  Sparkles,
   Terminal,
   CheckCircle2,
-  Cpu,
-  Layers,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
-import confetti from "canvas-confetti";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 export function ContactSection() {
@@ -23,25 +17,14 @@ export function ContactSection() {
     subject: "Collaboration / AI Role Inquiry",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSent(true);
-
-      // Trigger cosmic neon confetti
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.7 },
-        colors: ["#00f5ff", "#8b5cf6", "#10b981", "#ffffff"],
-      });
-    }, 1200);
+    const subject = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(`From: ${formData.name} (${formData.email})\n\n${formData.message}`);
+    window.location.href = `mailto:${PORTFOLIO_DATA.personal.socials.email}?subject=${subject}&body=${body}`;
+    setIsSent(true);
   };
 
   return (
@@ -56,10 +39,10 @@ export function ContactSection() {
           <span>GET IN TOUCH</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Get In Touch
+          Let&apos;s Build Something Intelligent.
         </h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-xl font-sans">
-          Feel free to reach out directly for full-time roles, internships, or project collaborations.
+          I am interested in AI/ML engineering opportunities, Generative AI development, internships, and collaborative projects. Let&apos;s connect and explore how intelligent technology can solve real-world problems.
         </p>
       </div>
 
@@ -121,31 +104,6 @@ export function ContactSection() {
               </div>
             </a>
 
-            <a
-              href={PORTFOLIO_DATA.personal.socials.huggingface}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-2xl bg-[#060a1d]/80 border border-white/10 hover:border-purple-400/50 hover:bg-purple-950/20 transition-all duration-300 flex items-center gap-3 group"
-            >
-              <Sparkles className="w-5 h-5 text-zinc-400 group-hover:text-purple-300 transition-colors" />
-              <div>
-                <div className="text-xs font-bold text-white group-hover:text-purple-300 font-mono">Hugging Face</div>
-                <div className="text-[10px] text-zinc-400 font-mono">Model Hub</div>
-              </div>
-            </a>
-
-            <a
-              href={PORTFOLIO_DATA.personal.socials.kaggle}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-2xl bg-[#060a1d]/80 border border-white/10 hover:border-emerald-400/50 hover:bg-emerald-950/20 transition-all duration-300 flex items-center gap-3 group"
-            >
-              <Cpu className="w-5 h-5 text-zinc-400 group-hover:text-emerald-300 transition-colors" />
-              <div>
-                <div className="text-xs font-bold text-white group-hover:text-emerald-300 font-mono">Kaggle</div>
-                <div className="text-[10px] text-zinc-400 font-mono">Competitions</div>
-              </div>
-            </a>
           </div>
         </div>
 
@@ -159,7 +117,7 @@ export function ContactSection() {
                   guest@neural-host:~$ ./dispatch_message.sh
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-cyan-400">TLS 1.3 256-BIT</span>
+              <span className="text-[10px] font-mono text-zinc-500">EMAIL HANDOFF</span>
             </div>
 
             {isSent ? (
@@ -172,10 +130,10 @@ export function ContactSection() {
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
                 <h3 className="text-xl font-bold font-mono text-white">
-                  Transmission Dispatched Successfully!
+                  Continue in your email app
                 </h3>
                 <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-sans">
-                  Thank you for reaching out. Your packet has been received in the primary queue. I'll get back to you within 24 hours.
+                  Your message was prepared in a mailto link. Send it from your email app to complete delivery. If it did not open, email {PORTFOLIO_DATA.personal.socials.email} directly.
                 </p>
                 <button
                   onClick={() => setIsSent(false)}
@@ -188,10 +146,11 @@ export function ContactSection() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-zinc-400">
+                    <label htmlFor="contact-name" className="text-xs font-mono text-zinc-400">
                       NAME / SENDER_ID
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       required
                       value={formData.name}
@@ -202,10 +161,11 @@ export function ContactSection() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-zinc-400">
+                    <label htmlFor="contact-email" className="text-xs font-mono text-zinc-400">
                       ELECTRONIC_MAIL
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       required
                       value={formData.email}
@@ -217,10 +177,11 @@ export function ContactSection() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-zinc-400">
+                  <label htmlFor="contact-subject" className="text-xs font-mono text-zinc-400">
                     SUBJECT // TOPIC
                   </label>
                   <input
+                    id="contact-subject"
                     type="text"
                     required
                     value={formData.subject}
@@ -230,10 +191,11 @@ export function ContactSection() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-zinc-400">
+                  <label htmlFor="contact-message" className="text-xs font-mono text-zinc-400">
                     PAYLOAD // MESSAGE
                   </label>
                   <textarea
+                    id="contact-message"
                     rows={4}
                     required
                     value={formData.message}
@@ -245,21 +207,15 @@ export function ContactSection() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={false}
                   className={`w-full py-3.5 rounded-xl font-mono font-bold text-xs tracking-wider flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
-                    isSubmitting
+                    false
                       ? "bg-cyan-950/60 text-cyan-400/50 border border-cyan-500/20 cursor-not-allowed"
                       : "bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 text-black shadow-[0_0_20px_rgba(0,245,255,0.4)] hover:shadow-[0_0_30px_rgba(0,245,255,0.7)] hover:scale-[1.01] active:scale-[0.99]"
                   }`}
                 >
-                  {isSubmitting ? (
-                    <span>ENCRYPTING & TRANSMITTING...</span>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 fill-black text-black" />
-                      <span>DISPATCH TRANSMISSION</span>
-                    </>
-                  )}
+                  <Send className="w-4 h-4 fill-black text-black" />
+                  <span>OPEN EMAIL TO SEND</span>
                 </button>
               </form>
             )}

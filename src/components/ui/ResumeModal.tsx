@@ -7,14 +7,12 @@ import {
   Download,
   GraduationCap,
   Briefcase,
-  Cpu,
   CheckCircle2,
   Award,
   FolderGit2,
   Phone,
   Mail,
   MapPin,
-  ExternalLink,
   Code2,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
@@ -63,7 +61,7 @@ export function ResumeModal({
             <div className="flex items-center gap-2">
               <button
                 onClick={() => window.print()}
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-mono transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-mono transition-colors cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Print / Save PDF</span>

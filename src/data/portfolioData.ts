@@ -76,18 +76,18 @@ export interface PlaygroundModel {
 export const PORTFOLIO_DATA = {
   personal: {
     name: "Mann Patel",
-    role: "AI & Machine Learning Systems Engineer",
+    role: "AI / ML Developer & Software Engineer",
     phone: "+91 9824804372",
-    objective: "Results-driven Computer Engineering student seeking an AI-ML Developer role. Proven experience architecting autonomous multi-agent systems, high-availability LLM failover arrays, and RAG vector search pipelines. Currently expanding expertise in Cloud Engineering and serverless infrastructure (AWS/Cloudflare) to build scalable, cloud-native AI solutions.",
-    statusBadge: "⚡ Available for AI/ML Engineering & Research Roles",
+    objective: "Results-driven Computer Engineering student (9.27 CGPA) seeking an AI/ML Developer role. Proven experience building autonomous multi-agent systems, RAG pipelines, and computer vision applications with Python, PyTorch, and Next.js.",
+    statusBadge: "Available for Full-Time Roles & Internships",
     location: "Ahmedabad, Gujarat / Remote",
-    tagline: "Architecting Autonomous Multi-Agent AI Swarms, Production RAG Pipelines & Computer Vision Systems.",
-    bio: "Computer Science & Engineering specialist skilled in building Autonomous Multi-Agent Swarms, Retrieval-Augmented Generation (RAG) engines, on-device Computer Vision with OpenCV, and high-performance full-stack AI architectures using Python (FastAPI), Next.js, PyTorch, Google Gemini, and Hugging Face diffusion models.",
+    tagline: "Building intelligent AI systems, robust RAG pipelines, and full-stack software applications.",
+    bio: "Computer Science & Engineering student at Silver Oak College of Technology with a 9.27 CGPA. Experienced in developing machine learning models, retrieval-augmented generation (RAG) pipelines, computer vision systems with OpenCV and YOLOv8, and full-stack applications with FastAPI, Next.js, and React.",
     metrics: [
-      { label: "Active Agent Swarms", value: "6 Coordinated", change: "Full Autonomy" },
-      { label: "Omnichannel Formats", value: "12 Channels", change: "15 Platforms" },
-      { label: "Zero-Cloud Security", value: "100% On-Prem", change: "OpenCV Biometrics" },
-      { label: "P99 Inference Latency", value: "< 28ms", change: "Real-Time Telemetry" },
+      { label: "Academic CGPA", value: "9.27 / 10", change: "Top Percentile" },
+      { label: "Production Projects", value: "6+ Built", change: "Full-Stack & AI" },
+      { label: "Core AI Stack", value: "Python / PyTorch", change: "FastAPI & RAG" },
+      { label: "Open Source", value: "Active Repos", change: "GitHub Projects" },
     ],
     socials: {
       github: "https://github.com/Mann-Patel85",
@@ -101,42 +101,36 @@ export const PORTFOLIO_DATA = {
   },
 
   skills: [
-    // Deep Learning & Multi-Agent Frameworks
-    { name: "Multi-Agent Swarms & LlamaIndex", level: 96, category: "dl", highlightColor: "#00f5ff", description: "LlamaIndex Workflows, 6-agent autonomous pipelines, tool orchestration & SSE streams" },
-    { name: "TigerGraph & GSQL (GraphRAG)", level: 95, category: "dl", highlightColor: "#F59E0B", description: "N-hop BFS GSQL graph queries, schema design, entity provenance & conflict detection" },
-    { name: "Google Gemini 2.5 & Multimodal Vision", level: 96, category: "dl", highlightColor: "#8b5cf6", description: "Gemini 2.5 Flash, Gemini 3.6/3.7, multimodal hazard triage, text-embedding-004" },
-    { name: "TensorFlow, Keras & LSTMs", level: 91, category: "dl", highlightColor: "#FF6F00", description: "Recurrent neural networks, generative music composition (music21), sequence modeling" },
-    { name: "Hugging Face Diffusion", level: 92, category: "dl", highlightColor: "#FFD21E", description: "FLUX.1-schnell & SDXL commercial multimodal image generation" },
-    { name: "PyTorch & Deep Learning", level: 90, category: "dl", highlightColor: "#EE4C2C", description: "Custom neural architectures, transfer learning, tensor operations" },
+    // Deep Learning & AI
+    { name: "PyTorch & Deep Learning", level: 88, category: "dl", highlightColor: "#EE4C2C", description: "Neural network architectures, tensor operations, model training & transfer learning" },
+    { name: "TensorFlow & Keras", level: 86, category: "dl", highlightColor: "#FF6F00", description: "Deep neural networks, recurrent networks (LSTMs), and sequence modeling" },
+    { name: "Generative AI & LLMs", level: 90, category: "dl", highlightColor: "#8B5CF6", description: "Google Gemini API, prompt engineering, multimodal reasoning & embeddings" },
+    { name: "Agentic Systems & LlamaIndex", level: 87, category: "dl", highlightColor: "#00F5FF", description: "Autonomous agent loops, tool calling, multi-agent workflows & task execution" },
 
-    // Core ML, GraphRAG & Computer Vision
-    { name: "Agentic GraphRAG & Knowledge Graphs", level: 97, category: "ml", highlightColor: "#00F5FF", description: "Multi-hop graph navigation, dynamic gap detection, entity linking, 3-way RAG benchmarks" },
-    { name: "Hierarchical RAG & Auto-Merging", level: 97, category: "ml", highlightColor: "#06B6D4", description: "3-tier tree parsing (2048t/512t/128t), AutoMergingRetriever, ChromaDB, zero context loss" },
-    { name: "YOLOv8 & Real-Time Object Tracking", level: 95, category: "ml", highlightColor: "#10B981", description: "Ultralytics YOLOv8, live OpenCV analytics HUD, multi-object tracking IDs, snapshots" },
-    { name: "Computer Vision (OpenCV & Gemini)", level: 95, category: "ml", highlightColor: "#EC4899", description: "Haar Cascade facial detection, 128D spatial histograms & EXIF GPS extraction" },
-    { name: "Geospatial Mapping (Leaflet & OSM)", level: 92, category: "ml", highlightColor: "#10B981", description: "Interactive 2D/3D spatial mapping, India boundaries, color-coded urgency pins" },
-    { name: "NLP, Translation & Conversational AI", level: 94, category: "ml", highlightColor: "#A855F7", description: "deep-translator, gTTS voice synthesis, FAQ chatbots, N-gram TF-IDF cosine matching" },
+    // Core ML, Vision & NLP
+    { name: "Machine Learning (Scikit-Learn)", level: 89, category: "ml", highlightColor: "#F59E0B", description: "Supervised & unsupervised learning, classification, regression & model evaluation" },
+    { name: "Computer Vision (OpenCV & YOLOv8)", level: 90, category: "ml", highlightColor: "#10B981", description: "Real-time object detection, facial recognition, video processing & feature extraction" },
+    { name: "Natural Language Processing (NLP)", level: 87, category: "ml", highlightColor: "#A855F7", description: "Text classification, tokenization, embeddings, TF-IDF & conversational interfaces" },
+    { name: "RAG & Vector Databases", level: 89, category: "ml", highlightColor: "#06B6D4", description: "Retrieval-Augmented Generation, vector embeddings, ChromaDB & semantic search" },
 
-    // Tools, Cloud & Backend
-    { name: "FastAPI & Python Async", level: 96, category: "infra", highlightColor: "#009688", description: "Asynchronous REST endpoints, WebSockets, SQLAlchemy 2.0 ORM, Pydantic v2" },
-    { name: "TigerGraph DB & ChromaDB", level: 95, category: "infra", highlightColor: "#F59E0B", description: "pyTigerGraph REST++, GSQL endpoints, ChromaDB 3072-dim persistent vector stores" },
-    { name: "Gradio & Streamlit Dashboards", level: 94, category: "infra", highlightColor: "#FF7C00", description: "Interactive AI studios, subgraph visualizers, 3-way RAG evaluation suites" },
-    { name: "Next.js 16 & React 19", level: 95, category: "infra", highlightColor: "#38BDF8", description: "App Router, SSR/CSR, Turbopack, Tailwind CSS v4, Framer Motion" },
-    { name: "Docker & Container Orchestration", level: 92, category: "infra", highlightColor: "#2496ED", description: "Multi-stage Dockerfiles, docker-compose.yml, Cloud Run container readiness" },
-    { name: "Security, RBAC & JWT", level: 92, category: "infra", highlightColor: "#EF4444", description: "bcrypt password hashing, jose JWT auth, role-based access control" },
+    // Backend, Web & Tools
+    { name: "FastAPI & REST APIs", level: 91, category: "infra", highlightColor: "#009688", description: "High-performance asynchronous endpoints, Pydantic validation & API design" },
+    { name: "Next.js & React", level: 88, category: "infra", highlightColor: "#38BDF8", description: "Modern responsive web applications, component architecture & Tailwind CSS" },
+    { name: "Streamlit & Gradio", level: 90, category: "infra", highlightColor: "#FF7C00", description: "Rapid prototyping, interactive AI demo applications & evaluation dashboards" },
+    { name: "Docker & Containerization", level: 85, category: "infra", highlightColor: "#2496ED", description: "Containerized application deployment, Dockerfiles & multi-container environments" },
 
-    // Languages & Accelerated Compute
-    { name: "Python", level: 98, category: "languages", highlightColor: "#3776AB", description: "AsyncIO concurrency, NumPy vector math, LlamaIndex, pyTigerGraph, OpenCV, Scikit-Learn" },
-    { name: "GSQL & SQL Relational DBs", level: 94, category: "languages", highlightColor: "#F59E0B", description: "TigerGraph GSQL graph queries, SQLite, PostgreSQL, SQLAlchemy 2.0 ORM" },
-    { name: "TypeScript / JavaScript", level: 94, category: "languages", highlightColor: "#3178C6", description: "Modern ES6+, Next.js App Router, React 19, strict type definitions" },
-    { name: "C / C++", level: 85, category: "languages", highlightColor: "#00599C", description: "Memory management, algorithms, low-level data structures" },
+    // Programming Languages
+    { name: "Python", level: 92, category: "languages", highlightColor: "#3776AB", description: "AsyncIO, data structures, scientific computing (NumPy, Pandas) & AI ecosystem" },
+    { name: "C / C++", level: 84, category: "languages", highlightColor: "#00599C", description: "Data structures & algorithms, memory management & object-oriented programming" },
+    { name: "JavaScript / TypeScript", level: 86, category: "languages", highlightColor: "#3178C6", description: "Modern ES6+, TypeScript type safety, web development & frontend frameworks" },
+    { name: "SQL & Relational Databases", level: 87, category: "languages", highlightColor: "#F59E0B", description: "Relational database schema design, SQL querying, PostgreSQL & SQLite" },
   ] as SkillItem[],
 
   skillCategories: [
-    { id: "dl", title: "Autonomous Agents, LSTMs & Vision AI", icon: "Boxes", color: "from-cyan-500 to-blue-600" },
-    { id: "ml", title: "Agentic GraphRAG, Vision & NLP", icon: "BrainCircuit", color: "from-purple-500 to-indigo-600" },
-    { id: "infra", title: "FastAPI, TigerGraph & Next.js", icon: "Server", color: "from-emerald-500 to-teal-600" },
-    { id: "languages", title: "Languages & Core Systems", icon: "Cpu", color: "from-amber-500 to-rose-600" },
+    { id: "dl", title: "Deep Learning & AI", icon: "Boxes", color: "from-cyan-500 to-blue-600" },
+    { id: "ml", title: "Machine Learning & Vision", icon: "BrainCircuit", color: "from-purple-500 to-indigo-600" },
+    { id: "infra", title: "Backend & Web Dev", icon: "Server", color: "from-emerald-500 to-teal-600" },
+    { id: "languages", title: "Programming Languages", icon: "Cpu", color: "from-amber-500 to-rose-600" },
   ],
 
   projects: [
@@ -326,20 +320,6 @@ export const PORTFOLIO_DATA = {
       skillsUsed: ["TigerGraph", "GSQL", "LlamaIndex", "FastAPI", "Next.js 16", "Gemini 2.5 Flash", "ChromaDB", "Docker"]
     },
     {
-      id: "exp-hackathon-tigergraph",
-      period: "2025",
-      role: "Hackathon Finalist — TigerGraph Agentic GraphRAG Challenge",
-      organization: "TigerGraph via Unstop",
-      location: "India / Global",
-      type: "Award",
-      badgeColor: "text-amber-400 border-amber-500/30 bg-amber-500/10",
-      description: [
-        "Engineered GraphScout: an autonomous multi-agent GraphRAG system answering multi-hop queries across 2,951 Olympic event documents (~5.46M tokens).",
-        "Authored GSQL schemas and N-hop BFS expansion queries, implementing a rigorous 3-Way Benchmark suite (Standard RAG vs GraphRAG vs Agentic GraphRAG)."
-      ],
-      skillsUsed: ["TigerGraph", "GSQL", "GraphRAG", "Streamlit", "Pydantic v2", "pyTigerGraph"]
-    },
-    {
       id: "exp-codealpha",
       period: "December 2025",
       role: "Artificial Intelligence Intern",
@@ -354,21 +334,6 @@ export const PORTFOLIO_DATA = {
         "YOLOv8 Pro: Deployed a real-time object detection & persistent tracking pipeline with live OpenCV analytics HUD (FPS, Track IDs) and Gradio Vision Studio."
       ],
       skillsUsed: ["YOLOv8", "TensorFlow / Keras", "LSTMs", "OpenCV", "Gradio", "gTTS", "music21", "Scikit-Learn"]
-    },
-    {
-      id: "exp-2",
-      period: "2023 — 2024",
-      role: "Machine Learning & Software Developer",
-      organization: "Applied AI Research Labs",
-      location: "India",
-      type: "Research",
-      badgeColor: "text-purple-400 border-purple-500/30 bg-purple-500/10",
-      description: [
-        "Built document extraction and hybrid vector retrieval engines supporting multi-format parsing (PDF, DOCX, Markdown).",
-        "Trained and evaluated Scikit-Learn text classifiers (SGDClassifier + TF-IDF) achieving high precision on domain categorization.",
-        "Developed image steganography algorithms hiding encrypted payloads inside LSB pixel bytes with SHA-256 deduplication."
-      ],
-      skillsUsed: ["Python", "PyTorch", "NLP", "OpenCV", "TF-IDF", "FastAPI"]
     }
   ] as ExperienceItem[],
 

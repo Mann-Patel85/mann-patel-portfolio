@@ -133,11 +133,11 @@ function TiltProjectCard({
         {/* Problem vs Solution Callout */}
         <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-2 text-xs font-sans">
           <div className="flex items-start gap-2">
-            <span className="font-mono text-rose-400 font-bold shrink-0">[PROBLEM]</span>
+            <span className="font-mono text-rose-400 font-bold shrink-0">Problem:</span>
             <span className="text-zinc-400">{project.problemSolution.problem}</span>
           </div>
           <div className="flex items-start gap-2 pt-1 border-t border-white/5">
-            <span className="font-mono text-emerald-400 font-bold shrink-0">[SOLVE]</span>
+            <span className="font-mono text-emerald-400 font-bold shrink-0">Solution:</span>
             <span className="text-zinc-300">{project.problemSolution.solution}</span>
           </div>
         </div>
@@ -177,13 +177,13 @@ function TiltProjectCard({
           className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 font-semibold cursor-pointer"
         >
           <Info className="w-3.5 h-3.5" />
-          <span>INSPECT DEPLOYMENT GRAPH</span>
+          <span>View Architecture Details</span>
           <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </button>
 
         <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-          VRAM OPTIMIZED
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          Production Ready
         </span>
       </div>
     </motion.div>
@@ -202,13 +202,13 @@ export function ProjectsGrid() {
       <div className="flex flex-col items-center text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/40 border border-indigo-500/30 text-xs font-mono text-indigo-300 mb-3">
           <Code2 className="w-3.5 h-3.5" />
-          <span>DEPLOYED NEURAL SYSTEMS // 02</span>
+          <span>FEATURED WORK</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Featured Engineering Projects
+          Featured Projects
         </h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl font-sans">
-          Production-grade LLM orchestration, high-concurrency vector retrieval, and custom CUDA-accelerated edge computer vision pipelines.
+          A selection of real-world machine learning systems, computer vision applications, and full-stack web platforms.
         </p>
       </div>
 
@@ -250,7 +250,7 @@ export function ProjectsGrid() {
 
             <div className="space-y-4">
               <h4 className="text-xs font-mono text-zinc-400 uppercase">
-                Kernel Pipeline & System Components:
+                Technical Highlights & Architecture:
               </h4>
               <ul className="space-y-2.5">
                 {selectedProject.architectureDetails.map((detail, idx) => (
@@ -263,14 +263,14 @@ export function ProjectsGrid() {
             </div>
 
             <div className="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/20 text-xs font-mono text-cyan-300 flex items-center justify-between">
-              <span>Status: Production Verified Benchmarks</span>
+              <span>Status: Verified & Open Source</span>
               <a
                 href={selectedProject.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 text-white hover:text-cyan-300 underline"
               >
-                Inspect GitHub Repo →
+                View GitHub Repository →
               </a>
             </div>
           </div>

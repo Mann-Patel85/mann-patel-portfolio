@@ -16,11 +16,11 @@ import {
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 const NAV_ITEMS = [
-  { label: "Overview", href: "#overview", icon: Brain },
+  { label: "About", href: "#overview", icon: Brain },
   { label: "Skills", href: "#skills", icon: Cpu },
   { label: "Projects", href: "#projects", icon: Code2 },
-  { label: "Playground", href: "#playground", icon: Terminal },
-  { label: "Timeline", href: "#experience", icon: Clock },
+  { label: "Demos", href: "#playground", icon: Terminal },
+  { label: "Experience", href: "#experience", icon: Clock },
   { label: "Contact", href: "#contact", icon: Send },
 ];
 
@@ -77,7 +77,7 @@ export function Navbar({ onOpenResume }: { onOpenResume: () => void }) {
               </span>
               <span className="text-[9px] font-mono text-cyan-400/80 -mt-0.5 flex items-center gap-1">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                NEURAL CORE ONLINE
+                AI / ML DEVELOPER
               </span>
             </div>
           </a>

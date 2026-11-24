@@ -53,13 +53,13 @@ export function ContactSection() {
       <div className="flex flex-col items-center text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-xs font-mono text-emerald-300 mb-3">
           <Send className="w-3.5 h-3.5" />
-          <span>ESTABLISH UPLINK // 05</span>
+          <span>GET IN TOUCH</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Initialize Contact & Neural Handshake
+          Get In Touch
         </h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-xl font-sans">
-          Currently open to full-time AI/ML engineering positions, foundational research collaborations, and technical advisory roles.
+          Feel free to reach out directly for full-time roles, internships, or project collaborations.
         </p>
       </div>
 
@@ -70,20 +70,20 @@ export function ContactSection() {
           <div className="p-6 rounded-3xl bg-[#060a1d]/85 border border-cyan-500/20 backdrop-blur-xl space-y-4 shadow-xl">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider">
-                TRANSMISSION CHANNEL STATUS
+                CONTACT INFORMATION
               </span>
               <span className="flex items-center gap-1.5 text-xs font-mono text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                ONLINE / OPEN
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                Open to Opportunities
               </span>
             </div>
 
             <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
-              Feel free to reach out directly via email or connect across research and code repositories.
+              Feel free to reach out directly via email or connect with me across GitHub and LinkedIn.
             </p>
 
             <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 font-mono text-xs text-zinc-300 flex items-center justify-between">
-              <span className="text-zinc-400">Direct Email:</span>
+              <span className="text-zinc-400">Email:</span>
               <a
                 href={PORTFOLIO_DATA.personal.socials.email.startsWith("mailto:") ? PORTFOLIO_DATA.personal.socials.email : `mailto:${PORTFOLIO_DATA.personal.socials.email}`}
                 className="text-cyan-300 hover:underline hover:text-cyan-200"

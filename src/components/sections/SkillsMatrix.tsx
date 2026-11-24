@@ -40,13 +40,13 @@ export function SkillsMatrix() {
       <div className="flex flex-col items-center text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>SYNAPTIC ARCHITECTURE // 01</span>
+          <span>SKILLS & TECHNOLOGIES</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Technical Matrix & Systems Radar
+          Technical Skills
         </h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl font-sans">
-          Hover over categories or skills to trigger resonant neural activations in the 3D celestial constellation behind.
+          Technologies, frameworks, and programming languages I use to build intelligent AI systems and scalable software applications.
         </p>
 
         {/* Filter / Category Selector Bar */}
@@ -62,7 +62,7 @@ export function SkillsMatrix() {
                 : "text-zinc-400 hover:text-white hover:bg-white/5"
             }`}
           >
-            All Systems ({PORTFOLIO_DATA.skills.length})
+            All Skills ({PORTFOLIO_DATA.skills.length})
           </button>
 
           {PORTFOLIO_DATA.skillCategories.map((cat) => (
@@ -137,7 +137,7 @@ export function SkillsMatrix() {
             {/* Proficiency Bar with Glow */}
             <div className="mt-4 pt-3 border-t border-white/5">
               <div className="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-1.5">
-                <span>Kernel Optimization Index</span>
+                <span>Proficiency</span>
                 <span className="text-cyan-400 font-bold">{skill.level}%</span>
               </div>
               <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
@@ -152,31 +152,6 @@ export function SkillsMatrix() {
             </div>
           </motion.div>
         ))}
-      </div>
-
-      {/* Hardware & Acceleration Spec Callout */}
-      <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-cyan-950/40 via-indigo-950/30 to-purple-950/40 border border-cyan-500/20 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-4">
-          <div className="p-3.5 rounded-2xl bg-cyan-500/10 border border-cyan-400/30">
-            <Cpu className="w-7 h-7 text-cyan-300 animate-pulse" />
-          </div>
-          <div>
-            <h4 className="text-base font-bold text-white font-mono">
-              High-Throughput Parallel Acceleration Stack
-            </h4>
-            <p className="text-xs text-zinc-300 mt-1 max-w-xl">
-              Specialized in writing low-level Triton & CUDA kernels for FlashAttention-2, AWQ INT4 dequantization, and zero-copy shared memory tensor transfers.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="px-3 py-1.5 rounded-lg bg-black/40 border border-white/10 text-xs font-mono text-cyan-300">
-            FP8 / INT4 GEMM
-          </span>
-          <span className="px-3 py-1.5 rounded-lg bg-black/40 border border-white/10 text-xs font-mono text-purple-300">
-            PagedAttention
-          </span>
-        </div>
       </div>
     </section>
   );

@@ -43,7 +43,7 @@ export function MLPlayground() {
     if (isInferencing) return;
     setIsInferencing(true);
     setStreamedText("");
-    setLogLines([`[KERNEL INITIALIZE] Allocating CUDA tensor buffer for ${selectedModel.name}...`]);
+    setLogLines([`[INITIALIZING] Loading pipeline components for ${selectedModel.name}...`]);
 
     const template = selectedModel.responseTemplate;
     const tokens = template.syntheticTokens;
@@ -53,7 +53,7 @@ export function MLPlayground() {
     setTimeout(() => {
       setLogLines((prev) => [
         ...prev,
-        `[FP8 ENGINE] Weights loaded into VRAM: ${template.vramMb} MB`,
+        `[READY] Executing query across pipeline...`,
         ...template.outputLines.slice(0, 2),
       ]);
     }, 250);
@@ -68,7 +68,7 @@ export function MLPlayground() {
         setIsInferencing(false);
         setLogLines((prev) => [
           ...prev,
-          `[COMPLETED] Stream finished with zero-copy buffer release.`,
+          `[COMPLETED] Pipeline execution finished successfully.`,
         ]);
         setMetrics({
           latency: template.latencyMs,
@@ -89,13 +89,13 @@ export function MLPlayground() {
       <div className="flex flex-col items-center text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
           <Terminal className="w-3.5 h-3.5" />
-          <span>INTERACTIVE INFERENCE LAB // 03</span>
+          <span>INTERACTIVE DEMOS</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Neural Playground & Mini-Terminal
+          Interactive Project Demos
         </h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl font-sans">
-          Select an optimized model architecture and trigger synthetic parallel inference on simulated NVIDIA H100 hardware.
+          Test simulated query workflows and pipeline execution traces from my featured projects in real time.
         </p>
       </div>
 
@@ -110,7 +110,7 @@ export function MLPlayground() {
               <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
             </div>
             <span className="text-xs font-mono text-cyan-300">
-              neural_infer_session://v1.4.0-cuda12.4
+              project_demo_console://pipeline-runner
             </span>
           </div>
 
@@ -139,7 +139,7 @@ export function MLPlayground() {
             <span className="text-cyan-300">{selectedModel.architecture}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-zinc-400">Weights:</span>
+            <span className="text-zinc-400">Scope:</span>
             <span className="text-purple-300">{selectedModel.parameters}</span>
           </div>
           <div className="flex items-center gap-2">
@@ -155,7 +155,7 @@ export function MLPlayground() {
             <div className="space-y-4">
               <label className="text-xs font-mono text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
                 <Sliders className="w-3.5 h-3.5" />
-                Input Inference Prompt
+                Input Query / Prompt
               </label>
 
               <textarea
@@ -167,8 +167,8 @@ export function MLPlayground() {
               />
 
               <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400">
-                <span>Precision: FP8 / INT4 Quantized</span>
-                <span>Context: 8,192 tokens</span>
+                <span>Mode: Interactive Demo</span>
+                <span>Status: Ready</span>
               </div>
             </div>
 
@@ -186,12 +186,12 @@ export function MLPlayground() {
                 {isInferencing ? (
                   <>
                     <Activity className="w-4 h-4 animate-spin text-cyan-400" />
-                    <span>SYNAPSE FORWARD PASS RUNNING...</span>
+                    <span>PROCESSING PIPELINE WORKFLOW...</span>
                   </>
                 ) : (
                   <>
                     <Play className="w-4 h-4 fill-black text-black" />
-                    <span>EXECUTE NEURAL INFERENCE</span>
+                    <span>RUN DEMO WORKFLOW</span>
                   </>
                 )}
               </button>
@@ -203,11 +203,11 @@ export function MLPlayground() {
             {/* Live Streaming Terminal Output */}
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-zinc-400 uppercase">Streaming Output Stream</span>
+                <span className="text-zinc-400 uppercase">Execution Output Stream</span>
                 {isInferencing && (
                   <span className="text-cyan-400 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                    GENERATING TOKENS
+                    PROCESSING
                   </span>
                 )}
               </div>
@@ -231,7 +231,7 @@ export function MLPlayground() {
 
                 {!isInferencing && !streamedText && (
                   <div className="text-zinc-400 flex items-center gap-2 h-24 justify-center">
-                    <span>Press "Execute Neural Inference" to stream response.</span>
+                    <span>Click &quot;Run Demo Workflow&quot; to test pipeline output.</span>
                   </div>
                 )}
               </div>
@@ -240,14 +240,14 @@ export function MLPlayground() {
             {/* Performance Metric Gauges */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
               <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-[10px] font-mono text-zinc-400">INFERENCE LATENCY</div>
+                <div className="text-[10px] font-mono text-zinc-400">LATENCY</div>
                 <div className="text-base font-bold font-mono text-cyan-300 mt-1">
                   {metrics.latency ? `${metrics.latency} ms` : "--"}
                 </div>
               </div>
 
               <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-[10px] font-mono text-zinc-400">THROUGHPUT</div>
+                <div className="text-[10px] font-mono text-zinc-400">SPEED</div>
                 <div className="text-base font-bold font-mono text-purple-300 mt-1">
                   {metrics.tokensPerSec ? `${metrics.tokensPerSec} tok/s` : "--"}
                 </div>
@@ -261,7 +261,7 @@ export function MLPlayground() {
               </div>
 
               <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-[10px] font-mono text-zinc-400">VRAM ALLOCATED</div>
+                <div className="text-[10px] font-mono text-zinc-400">MEMORY PROFILE</div>
                 <div className="text-base font-bold font-mono text-amber-300 mt-1">
                   {metrics.vram ? `${metrics.vram} MB` : "--"}
                 </div>

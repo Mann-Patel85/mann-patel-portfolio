@@ -135,6 +135,34 @@ export const PORTFOLIO_DATA = {
 
   projects: [
     {
+      id: "project-agentic-marketer",
+      title: "AgenticMarketer",
+      tagline: "Autonomous Multi-Agent Marketing Intelligence & Omnichannel Publisher",
+      description: "An enterprise-grade autonomous 6-agent cooperative swarm that ingests brand documentation via RAG, conducts live market research with DuckDuckGo, drafts 12 tailored copy formats, generates FLUX.1 diffusion banners, and publishes across 15 social platforms.",
+      problemSolution: {
+        problem: "Modern marketing workflows suffer from brand inconsistency, fragmented multi-tool subscriptions, manual adaptation across 12+ channels, and lack of real-time market/competitor research.",
+        solution: "Orchestrated a 6-agent pipeline (Brand Retrieval, Live Web Research, Multi-Channel Copywriter, Multimodal FLUX.1 Visual Designer, SEO/Readability Auditor, and Omnichannel Social Publisher) with hybrid vector RAG."
+      },
+      metrics: [
+        { label: "Autonomous Swarm", value: "6 AI Agents" },
+        { label: "Content Formats", value: "12 Channels" },
+        { label: "Social Networks", value: "15 Platforms" },
+        { label: "Visual Banner Res", value: "1024x1024 FLUX.1" }
+      ],
+      tags: ["FastAPI", "Next.js 16", "Google Gemini", "FLUX.1 Diffusion", "Hybrid RAG", "DuckDuckGo API", "textstat", "JWT RBAC"],
+      featured: true,
+      githubUrl: "https://github.com/Mann-Patel85/AgenticMarketer-Automated-Marketing-Intelligence",
+      demoUrl: "https://agentic-marketer-automated-marketin.vercel.app/",
+      architectureDetails: [
+        "6-Agent Swarm Pipeline: Brand Ingestion -> Market Research -> Creative Copywriting -> FLUX.1 Image Gen -> SEO Audit -> Omnichannel Dispatch",
+        "Hybrid RAG vector retrieval with Google text-embedding-004 and local TF-IDF cosine similarity fallback",
+        "Multimodal visual generation routing to Hugging Face FLUX.1-schnell & SDXL with Gemini Image failover",
+        "Mathematical text analysis with Flesch-Kincaid grade level, keyword density checks, and length validation",
+        "Omnichannel broadcast engine supporting LinkedIn, X, Threads, Reddit, YouTube, TikTok, Medium, Discord, and Webhooks"
+      ],
+      gradient: "from-purple-500/20 via-indigo-600/10 to-transparent"
+    },
+    {
       id: "project-graphscout",
       title: "GraphScout: Agentic GraphRAG",
       tagline: "Autonomous Multi-Hop Graph Investigation & GSQL Engine",
@@ -152,7 +180,6 @@ export const PORTFOLIO_DATA = {
       tags: ["TigerGraph", "GSQL", "Agentic GraphRAG", "Python", "Streamlit", "Multi-Agent Swarm", "REST++"],
       featured: true,
       githubUrl: "https://github.com/Mann-Patel85/GraphScout-Agentic-GraphRAG",
-      demoUrl: "https://unstop.com",
       architectureDetails: [
         "TigerGraph GSQL Graph Schema with Document, Chunk, Entity, and Event vertices + 5 directional edge types",
         "Orchestrator Agent managing dynamic loop: entity linking -> GSQL N-hop traversal -> vector search -> gap evaluation -> synthesis",
@@ -179,7 +206,6 @@ export const PORTFOLIO_DATA = {
       tags: ["LlamaIndex", "Gemini 2.5 Flash", "ChromaDB", "Hierarchical RAG", "AutoMergingRetriever", "Python", "PDFReader"],
       featured: true,
       githubUrl: "https://github.com/Mann-Patel85/Enterprise-RAG-Agentic-Document-Auditor",
-      demoUrl: "https://github.com/Mann-Patel85/Enterprise-RAG-Agentic-Document-Auditor",
       architectureDetails: [
         "3-Tier Hierarchical Parsing: 2048-token Root Nodes -> 512-token Mid Nodes -> 128-token Search Leaf Nodes",
         "Google Gemini Embedding-001 (3072 dimensions) with ChromaDB persistent vector storage context",
@@ -206,42 +232,12 @@ export const PORTFOLIO_DATA = {
       tags: ["FastAPI", "Next.js 16", "Gemini 2.5 Flash", "Leaflet Maps", "SQLAlchemy", "Pydantic v2", "Docker", "Pillow EXIF"],
       featured: true,
       githubUrl: "https://github.com/Mann-Patel85/LocusTriage-AI",
-      demoUrl: "http://localhost:3000",
       architectureDetails: [
         "Google Gemini 2.5 Flash vision engine parsing hazard photos to compute 1-10 Urgency Score & diagnostic summary",
         "Pillow (PIL) metadata parser extracting EXIF GPS coordinates with fallback to device geolocation and city presets",
         "Two-Tier Portal: Citizen Reporting Dropzone + Municipal Command Center with inline SQLite status updates",
         "Geospatial Leaflet & OpenStreetMap interface with dynamic color-coded urgency pins (Critical 8-10, Moderate 5-7, Minor 1-4)",
         "Docker Compose orchestration with Python 3.11-slim backend and Node 20-alpine Next.js multi-stage frontend"
-      ],
-      gradient: "from-purple-500/20 via-indigo-600/10 to-transparent"
-    },
-    {
-      id: "project-agentic-marketer",
-      title: "AgenticMarketer",
-      tagline: "Autonomous Multi-Agent Marketing Intelligence & Omnichannel Publisher",
-      description: "An enterprise-grade autonomous 6-agent cooperative swarm that ingests brand documentation via RAG, conducts live market research with DuckDuckGo, drafts 12 tailored copy formats, generates FLUX.1 diffusion banners, and publishes across 15 social platforms.",
-      problemSolution: {
-        problem: "Modern marketing workflows suffer from brand inconsistency, fragmented multi-tool subscriptions, manual adaptation across 12+ channels, and lack of real-time market/competitor research.",
-        solution: "Orchestrated a 6-agent pipeline (Brand Retrieval, Live Web Research, Multi-Channel Copywriter, Multimodal FLUX.1 Visual Designer, SEO/Readability Auditor, and Omnichannel Social Publisher) with hybrid vector RAG."
-      },
-      metrics: [
-        { label: "Autonomous Swarm", value: "6 AI Agents" },
-        { label: "Content Formats", value: "12 Channels" },
-        { label: "Social Networks", value: "15 Platforms" },
-        { label: "Visual Banner Res", value: "1024x1024 FLUX.1" }
-      ],
-      tags: ["FastAPI", "Next.js 16", "Google Gemini", "FLUX.1 Diffusion", "Hybrid RAG", "DuckDuckGo API", "textstat", "JWT RBAC"],
-      featured: true,
-      githubUrl: "https://github.com/Mann-Patel85/AgenticMarketer-Automated-Marketing-Intelligence",
-      demoUrl: "http://localhost:8000/docs",
-      paperUrl: "https://aistudio.google.com",
-      architectureDetails: [
-        "6-Agent Swarm Pipeline: Brand Ingestion -> Market Research -> Creative Copywriting -> FLUX.1 Image Gen -> SEO Audit -> Omnichannel Dispatch",
-        "Hybrid RAG vector retrieval with Google text-embedding-004 and local TF-IDF cosine similarity fallback",
-        "Multimodal visual generation routing to Hugging Face FLUX.1-schnell & SDXL with Gemini Image failover",
-        "Mathematical text analysis with Flesch-Kincaid grade level, keyword density checks, and length validation",
-        "Omnichannel broadcast engine supporting LinkedIn, X, Threads, Reddit, YouTube, TikTok, Medium, Discord, and Webhooks"
       ],
       gradient: "from-purple-500/20 via-indigo-600/10 to-transparent"
     },
@@ -263,7 +259,6 @@ export const PORTFOLIO_DATA = {
       tags: ["Python FastAPI", "React 19 Vite", "OpenCV", "Scikit-Learn", "WebSockets", "Steganography", "psutil", "SHA-256"],
       featured: true,
       githubUrl: "https://github.com/Mann-Patel85/NexusShare-AI",
-      demoUrl: "http://localhost:8000",
       architectureDetails: [
         "OpenCV Haar Cascade face detection with 128-dimensional spatial histogram extraction & single-use token issuance",
         "On-device SGDClassifier + TF-IDF model categorizing documents across 7 business/tech domains with auto-tagging",
@@ -291,7 +286,6 @@ export const PORTFOLIO_DATA = {
       tags: ["Python", "Streamlit", "OpenCV", "DeepFace", "VGG-Face", "Computer Vision", "Facial Biometrics"],
       featured: true,
       githubUrl: "https://github.com/Mann-Patel85",
-      demoUrl: "https://github.com/Mann-Patel85",
       architectureDetails: [
         "Real-time video frame capture and facial bounding box localization via OpenCV Haar Cascades",
         "DeepFace feature extraction extracting high-dimensional facial embeddings using VGG-Face",

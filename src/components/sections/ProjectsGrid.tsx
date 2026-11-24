@@ -86,17 +86,6 @@ function TiltProjectCard({
           </div>
 
           <div className="flex items-center gap-2">
-            {project.paperUrl && (
-              <a
-                href={project.paperUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-cyan-300 transition-colors"
-                title="ArXiv Paper / Weights"
-              >
-                <FileText className="w-4 h-4" />
-              </a>
-            )}
             <a
               href={project.githubUrl}
               target="_blank"

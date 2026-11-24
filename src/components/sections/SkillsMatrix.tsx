@@ -56,11 +56,10 @@ export function SkillsMatrix() {
               setSelectedCategory("all");
               setActiveCategory(null);
             }}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
-              selectedCategory === "all"
+            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${selectedCategory === "all"
                 ? "bg-cyan-500 text-black font-bold shadow-[0_0_15px_#00f5ff66]"
                 : "text-zinc-400 hover:text-white hover:bg-white/5"
-            }`}
+              }`}
           >
             All Skills ({PORTFOLIO_DATA.skills.length})
           </button>
@@ -77,11 +76,10 @@ export function SkillsMatrix() {
                 if (selectedCategory === "all") setActiveCategory(null);
                 else setActiveCategory(selectedCategory);
               }}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
-                selectedCategory === cat.id
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${selectedCategory === cat.id
                   ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 shadow-[0_0_15px_rgba(0,245,255,0.2)]"
                   : "text-zinc-400 hover:text-white hover:bg-white/5"
-              }`}
+                }`}
             >
               {CATEGORY_ICONS[cat.id]}
               <span>{cat.title}</span>
@@ -134,22 +132,7 @@ export function SkillsMatrix() {
               {skill.description}
             </p>
 
-            {/* Proficiency Bar with Glow */}
-            <div className="mt-4 pt-3 border-t border-white/5">
-              <div className="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-1.5">
-                <span>Proficiency</span>
-                <span className="text-cyan-400 font-bold">{skill.level}%</span>
-              </div>
-              <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.2 }}
-                  className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500"
-                />
-              </div>
-            </div>
+
           </motion.div>
         ))}
       </div>

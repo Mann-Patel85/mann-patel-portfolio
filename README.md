@@ -1,133 +1,59 @@
-# 🌌 Mann Patel — AI & Machine Learning Systems Engineer Portfolio
+# Mann Patel — AI/ML Engineer Portfolio
 
-> High-performance, single-page developer portfolio featuring an interactive **3D Galactic & Neural Constellation** WebGL canvas, mock LLM/Vision inference playground, 3D tilt project showcase, and reactive telemetry HUD.
+Personal portfolio: agentic GraphRAG, hierarchical RAG, multi-agent LLM pipelines and computer-vision projects.
 
-![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
-![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css)
-![Three.js](https://img.shields.io/badge/Three.js-WebGL-black?style=for-the-badge&logo=three.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)
-![Vercel Ready](https://img.shields.io/badge/Vercel-Deployment%20Ready-000000?style=for-the-badge&logo=vercel)
+**Live:** https://mann-patel-portfolio-dun.vercel.app
 
----
+Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion and a react-three-fiber background.
 
-## ⚡ Highlights & Key Features
+## Run locally
 
-- **🪐 3D Galactic & Neural Constellation Canvas**: Built with Three.js via `@react-three/fiber` & `@react-three/drei`. Features 1,400+ volumetric stars, procedural nebula glows, and pulsing neural synapses.
-- **🔗 Reactive Canvas Integration**: Hovering over skill cards in the UI dynamically highlights and illuminates corresponding 3D neural node clusters in the background space canvas.
-- **🧪 Interactive ML Playground**: Simulates real-time token generation, streaming latency telemetry, VRAM consumption, and latency benchmarks across 4 specialized models (LlamaIndex Multi-Agent Swarm, Agentic GraphRAG, YOLOv8 Vision HUD, Music Generation LSTM).
-- **🛸 3D Mouse Tilt Project Cards**: Showcase of production AI systems featuring metrics, architecture blueprints, live modal walkthroughs, and direct repository links.
-- **🧭 Dynamic Navigation & Telemetry**: Floating glassmorphic dock with active section tracking, magnetic glowing cursor, interactive CV/Resume drawer, and cyberpunk terminal contact form with confetti effects.
-- **🚀 Ultra-Fast Static Prerendering**: Pre-compiled with Next.js 16 Turbopack for near-instant page loads and zero SSR hydration lag.
-
----
-
-## 🛠️ Tech Stack
-
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
-- **Library**: [React 19](https://react.dev/)
-- **3D Graphics**: [Three.js](https://threejs.org/) + [@react-three/fiber](https://r3f.docs.pmnd.rs/) + [@react-three/drei](https://github.com/pmndrs/drei)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) + Custom CSS design tokens
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/) + Inline Brand SVGs
-- **Particles & FX**: Canvas-Confetti
-
----
-
-## 📁 Project Structure
-
-```
-Portfolio/
-├── src/
-│   ├── app/
-│   │   ├── favicon.ico             # Browser icon
-│   │   ├── globals.css             # Theme tokens, custom scrollbars & selection glows
-│   │   ├── layout.tsx              # SEO metadata, OpenGraph tags & Geist font
-│   │   └── page.tsx                # Master assembly with dynamic Three.js canvas import
-│   ├── components/
-│   │   ├── canvas/                 # WebGL Scene, Nebula Glow, Starfield & Neural Constellation
-│   │   ├── sections/               # Hero, Skills Matrix, Projects Grid, ML Playground, Timeline, Contact
-│   │   └── ui/                     # Navbar dock, Custom cursor, Resume modal, Footer
-│   ├── context/
-│   │   └── NeuralContext.tsx       # Global state connecting UI hovers to 3D Canvas
-│   ├── data/
-│   │   └── portfolioData.ts        # Single source of truth for all projects, skills & stats
-│   └── lib/
-│       └── utils.ts                # Class merging utility (clsx + tailwind-merge)
-├── public/                         # Static assets and icons
-├── package.json
-└── next.config.ts
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build (static)
+npm run lint
 ```
 
----
+## Editing content
 
-## 💻 Local Development
+All content lives in [`src/data/portfolioData.ts`](src/data/portfolioData.ts): profile, skills, projects, experience, education, certifications. The resume modal is generated from the same data, so the site and resume can't drift apart.
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Mann-Patel85/portfolio.git
-   cd portfolio
+### Adding project screenshots / videos
+
+1. Put files in `public/projects/<slug>/`, e.g. `public/projects/graphscout/cover.png`.
+2. Add them to the project's `media` array:
+
+   ```ts
+   media: [
+     { type: "image", src: "/projects/graphscout/cover.png", alt: "GraphScout investigation studio" },
+     { type: "video", src: "/projects/graphscout/demo.mp4", alt: "Multi-hop query walkthrough", poster: "/projects/graphscout/cover.png" },
+   ],
    ```
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+   The first item is the card cover; the rest appear in the project page gallery. Use 16:9 images (1600×900 works well) and keep videos short, muted MP4s under ~10 MB.
 
-3. **Start the development server**:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Adding benchmark results
 
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
+Set `results` on a project (see the commented example on GraphScout). It renders as a table on the project page and adds a badge to the card. Only add numbers you've measured.
 
----
+### Resume PDF
 
-## 🚀 Deploying to Vercel
+Put the file at `public/Mann_Patel_Resume.pdf` and set `personal.resumeUrl` to `"/Mann_Patel_Resume.pdf"`. Until then, the resume modal's "Print / Save as PDF" prints a clean, light version of the resume.
 
-### Option 1: One-Click Import via Vercel Dashboard (Recommended)
+## Structure
 
-1. Push this repository to your GitHub account:
-   ```bash
-   git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>.git
-   git branch -M main
-   git push -u origin main
-   ```
-2. Go to [vercel.com/new](https://vercel.com/new).
-3. Connect your GitHub account and select your portfolio repository.
-4. Vercel will automatically detect **Next.js** framework defaults:
-   - **Framework Preset**: `Next.js`
-   - **Build Command**: `next build`
-   - **Output Directory**: `.next`
-   - **Install Command**: `npm install`
-5. Click **Deploy**. Your portfolio will be live on a global CDN in ~1 minute!
-
----
-
-### Option 2: Deploying via Vercel CLI
-
-1. Install the Vercel CLI globally (if not already installed):
-   ```bash
-   npm install -g vercel
-   ```
-2. Log in and deploy directly from the project directory:
-   ```bash
-   vercel
-   ```
-3. To deploy directly to production:
-   ```bash
-   vercel --prod
-   ```
-
----
-
-## 👤 Author
-
-**Mann Patel**
-- Portfolio: [https://github.com/Mann-Patel85](https://github.com/Mann-Patel85)
-- Email: [mann6657@gmail.com](mailto:mann6657@gmail.com)
-- LinkedIn: [linkedin.com/in/mannpatel](https://linkedin.com/in/mannpatel)
+```
+src/
+  app/
+    page.tsx                  # Home (single page)
+    projects/[slug]/page.tsx  # Static case-study page per project
+    opengraph-image.tsx       # Generated 1200×630 PNG link preview
+    sitemap.ts, robots.ts
+  components/
+    sections/                 # Hero, About, Projects, Skills, Experience, Contact
+    ui/                       # Navbar, ResumeModal, ProjectMedia, Footer, cursor
+    canvas/                   # Three.js background
+  context/NeuralContext.tsx   # Skill hover → background highlight
+  data/portfolioData.ts       # All content
+```

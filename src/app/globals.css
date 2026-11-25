@@ -22,7 +22,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom Webkit Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -40,10 +39,14 @@ body {
   background: #00f5ff;
 }
 
-/* Text Selection Glow */
 ::selection {
   background: #00f5ff33;
   color: #00f5ff;
+}
+
+:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -52,5 +55,33 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Printing with the resume open prints only the resume, on white paper. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body:has(.resume-print-root) > *:not(.resume-print-root) {
+    display: none !important;
+  }
+
+  .resume-print-root {
+    position: static !important;
+    display: block !important;
+    padding: 0 !important;
+  }
+
+  .resume-print-root a {
+    color: #000 !important;
+    text-decoration: none !important;
   }
 }

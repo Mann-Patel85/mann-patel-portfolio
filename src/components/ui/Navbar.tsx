@@ -6,7 +6,6 @@ import {
   Brain,
   Code2,
   Cpu,
-  Terminal,
   Clock,
   Send,
   Sparkles,
@@ -17,9 +16,8 @@ import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 const NAV_ITEMS = [
   { label: "About", href: "#about", icon: Brain },
-  { label: "Skills", href: "#skills", icon: Cpu },
   { label: "Projects", href: "#projects", icon: Code2 },
-  { label: "Demos", href: "#playground", icon: Terminal },
+  { label: "Skills", href: "#skills", icon: Cpu },
   { label: "Experience", href: "#experience", icon: Clock },
   { label: "Contact", href: "#contact", icon: Send },
 ];
@@ -46,7 +44,7 @@ export function Navbar({ onOpenResume }: { onOpenResume: () => void }) {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -69,15 +67,15 @@ export function Navbar({ onOpenResume }: { onOpenResume: () => void }) {
             className="flex items-center gap-2.5 pl-2 pr-1 group"
           >
             <div className="relative flex items-center justify-center w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500 to-indigo-600 shadow-[0_0_12px_#00f5ff66]">
-              <Sparkles className="w-4 h-4 text-white animate-pulse" />
+              <Sparkles className="w-4 h-4 text-white" />
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-mono font-bold tracking-wider text-zinc-100 group-hover:text-cyan-400 transition-colors">
                 {PORTFOLIO_DATA.personal.name.toUpperCase()}
               </span>
               <span className="text-[9px] font-mono text-cyan-400/80 -mt-0.5 flex items-center gap-1">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                AI / ML DEVELOPER
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                AI / ML ENGINEER
               </span>
             </div>
           </a>
@@ -118,9 +116,7 @@ export function Navbar({ onOpenResume }: { onOpenResume: () => void }) {
               onClick={onOpenResume}
               className="relative px-3.5 py-1.5 text-xs font-mono text-cyan-300 rounded-full bg-cyan-950/60 border border-cyan-500/40 hover:border-cyan-400 hover:bg-cyan-900/60 hover:shadow-[0_0_15px_#00f5ff44] transition-all duration-200 flex items-center gap-1.5 cursor-pointer"
             >
-              <span className="hidden sm:inline">Resume / CV</span>
-              <span className="sm:hidden">CV</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              Resume
             </button>
 
             {/* Mobile Hamburger */}

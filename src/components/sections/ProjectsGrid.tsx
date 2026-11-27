@@ -106,10 +106,10 @@ function ProjectCard({ project }: { project: ProjectItem }) {
 
       <div className="mt-auto pt-5">
         <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-          {project.results ? (
+          {project.results?.length ? (
             <span className="inline-flex items-center gap-1.5 text-amber-300">
               <BarChart3 className="w-3.5 h-3.5" />
-              Benchmark results inside
+              Measured results inside
             </span>
           ) : (
             <span />

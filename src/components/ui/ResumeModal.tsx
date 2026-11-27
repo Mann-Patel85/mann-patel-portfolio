@@ -189,7 +189,7 @@ export function ResumeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                           )}
                         </span>
                       </div>
-                      <p className="text-[11px] font-mono text-zinc-400 print:text-black">{p.tags.join(" · ")}</p>
+                      <p className="text-[11px] font-mono text-zinc-400 print:text-black">{p.resumeStack ?? p.tags.join(", ")}</p>
                       <ul className="mt-1.5 list-disc pl-5 space-y-1 text-xs">
                         {p.resumeBullets!.map((b) => (
                           <li key={b}>{b}</li>

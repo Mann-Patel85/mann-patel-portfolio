@@ -113,34 +113,50 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </ol>
         </section>
 
-        {project.results && (
+        {project.results?.length ? (
           <section className={`mt-8 ${card}`}>
-            <h2 className="text-2xl font-bold">{project.results.title}</h2>
-            <div className="mt-6 overflow-x-auto">
-              <table className="w-full min-w-[480px] text-left text-sm">
-                <thead>
-                  <tr className="border-b border-white/10 font-mono text-xs text-zinc-400">
-                    {project.results.headers.map((h) => (
-                      <th key={h} className="py-2 pr-4 font-normal">{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {project.results.rows.map((row, ri) => (
-                    <tr key={ri} className="border-b border-white/5 last:border-0">
-                      {row.map((cell, ci) => (
-                        <td key={ci} className={`py-2.5 pr-4 ${ci === 0 ? "text-white" : "font-mono text-cyan-200"}`}>
-                          {cell}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <h2 className="text-2xl font-bold">Results</h2>
+            <div className="mt-6 space-y-10">
+              {project.results.map((result) => (
+                <div key={result.title}>
+                  <h3 className="font-mono text-sm uppercase tracking-wider text-cyan-300">{result.title}</h3>
+                  <div className="mt-3 overflow-x-auto">
+                    <table className="w-full min-w-[420px] text-left text-sm">
+                      <thead>
+                        <tr className="border-b border-white/10 font-mono text-xs text-zinc-400">
+                          {result.headers.map((h, i) => (
+                            <th key={h} className={`py-2 pr-4 font-normal ${i > 0 ? "text-right" : ""}`}>{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {result.rows.map((row, ri) => (
+                          <tr key={ri} className="border-b border-white/5 last:border-0">
+                            {row.map((cell, ci) => (
+                              <td key={ci} className={`py-2.5 pr-4 ${ci === 0 ? "text-white" : "text-right font-mono text-cyan-200"}`}>
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {result.note && <p className="mt-3 text-xs leading-5 text-zinc-400">{result.note}</p>}
+                </div>
+              ))}
             </div>
-            {project.results.note && <p className="mt-4 text-xs text-zinc-400">{project.results.note}</p>}
+            {project.githubUrl && (
+              <p className="mt-6 text-xs text-zinc-500">
+                Reproducible from the evaluation scripts in the{" "}
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-cyan-300 underline">
+                  repository
+                </a>
+                .
+              </p>
+            )}
           </section>
-        )}
+        ) : null}
 
         {gallery.length > 0 && (
           <section className={`mt-8 ${card}`}>

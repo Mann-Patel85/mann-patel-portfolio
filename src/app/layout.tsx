@@ -5,7 +5,7 @@ import { PORTFOLIO_DATA } from "@/data/portfolioData";
 const { personal, site } = PORTFOLIO_DATA;
 const title = `${personal.name} | AI/ML Engineer & Generative AI Developer`;
 const description =
-  "AI/ML engineering portfolio: agentic GraphRAG on TigerGraph, hierarchical RAG, multi-agent LLM pipelines, and computer-vision applications built with Python, FastAPI and Next.js.";
+  "AI/ML engineering portfolio: agentic GraphRAG on Neo4j, hierarchical RAG, a fact-checked multi-agent LLM pipeline, and computer-vision applications built with Python, FastAPI and Next.js.";
 
 // The Open Graph image comes from ./opengraph-image.tsx (generated PNG).
 export const metadata: Metadata = {

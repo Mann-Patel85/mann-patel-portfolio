@@ -48,11 +48,13 @@ export interface ProjectItem {
   githubUrl?: string;
   demoUrl?: string;
   architecture: string[];
-  /** Measured results (benchmarks, accuracy, latency). Only add real numbers. */
-  results?: ProjectResults;
+  /** Measured results (benchmarks, accuracy, latency). Only add real, reproducible numbers. */
+  results?: ProjectResults[];
   media: ProjectMedia[];
   /** Bullets used in the resume modal (keep in sync with the PDF). */
   resumeBullets?: string[];
+  /** Tech line shown on the resume (matches the PDF). Defaults to `tags`. */
+  resumeStack?: string;
   context?: string;
   /** e.g. "Aug 2026 – Present" */
   period?: string;
@@ -102,7 +104,7 @@ export const PORTFOLIO_DATA = {
       "Final-year B.Tech CSE student (9.27 CGPA) building multi-agent LLM systems, GraphRAG and hierarchical RAG pipelines, and computer-vision applications — end to end, from FastAPI backends to Next.js frontends.",
     bio: [
       "I'm a final-year B.Tech Computer Science and Engineering student at Silver Oak College of Technology, Ahmedabad (CGPA 9.27).",
-      "Most of my work sits where LLMs meet real data: an agentic GraphRAG system on TigerGraph built for a hackathon, a hierarchical RAG auditor for legal contracts, a six-agent marketing pipeline, and computer-vision tools for civic hazard triage and attendance.",
+      "Most of my work sits where LLMs meet real data: an agentic GraphRAG system that began at a TigerGraph hackathon and now runs on Neo4j, a hierarchical RAG auditor for legal contracts, a seven-agent marketing pipeline with a fact-checking agent I measured against planted errors, and photo-based triage for civic hazards.",
       "I like owning the whole system — data ingestion, retrieval, the agent loop, the API, and the interface someone actually uses.",
     ],
     coreStack: ["Python", "FastAPI", "LLM APIs (Gemini, Groq, OpenAI)", "RAG / GraphRAG", "OpenCV", "Next.js", "Docker"],
@@ -125,7 +127,7 @@ export const PORTFOLIO_DATA = {
     {
       id: "generative",
       title: "Generative AI & Agents",
-      items: ["RAG", "Hybrid RAG", "GraphRAG", "Agentic AI", "Multi-agent systems", "LLM integration", "Prompt engineering", "CrewAI", "LlamaIndex", "Groq", "Gemini"],
+      items: ["RAG", "Hybrid RAG", "GraphRAG", "Agentic AI", "Multi-agent systems", "LLM integration", "LLM evaluation", "Hallucination mitigation", "Prompt engineering", "CrewAI", "LlamaIndex", "Groq", "Gemini"],
     },
     {
       id: "ml",
@@ -135,12 +137,12 @@ export const PORTFOLIO_DATA = {
     {
       id: "backend",
       title: "Frameworks & APIs",
-      items: ["FastAPI", "Pydantic", "SQLAlchemy", "REST APIs", "WebSockets", "JWT auth & RBAC", "Next.js", "React", "Streamlit", "Gradio"],
+      items: ["FastAPI", "Pydantic", "SQLAlchemy", "REST APIs", "WebSockets", "JWT, OAuth 2.0 & RBAC", "Next.js", "React", "Streamlit", "Gradio"],
     },
     {
       id: "databases",
       title: "Databases & Cloud",
-      items: ["PostgreSQL", "MySQL", "SQLite", "ChromaDB", "TigerGraph (GSQL)", "AWS", "Cloudflare Workers AI"],
+      items: ["PostgreSQL", "MySQL", "SQLite", "Neo4j (Cypher)", "ChromaDB", "TigerGraph (GSQL)", "AWS", "Cloudflare Workers AI"],
     },
     {
       id: "languages",
@@ -158,33 +160,36 @@ export const PORTFOLIO_DATA = {
     {
       slug: "graphscout",
       title: "GraphScout",
-      tagline: "Agentic GraphRAG on TigerGraph",
-      context: "TigerGraph Agentic GraphRAG Hackathon (Unstop)",
+      tagline: "Agentic GraphRAG on Neo4j",
+      context: "Began at the TigerGraph Agentic GraphRAG Hackathon (Unstop)",
       period: "Oct 2026",
       description:
-        "An orchestrator agent that answers multi-hop questions over 2,951 Olympic event documents (~5.46M tokens) by choosing, step by step, between GSQL graph traversal, vector search, and evidence evaluation until the answer is complete.",
+        "An orchestrator agent that answers multi-hop questions over 2,951 Olympic event documents (~5.46M tokens) by choosing, each round, between Cypher graph traversal, vector search, exact event filtering and evidence evaluation until the answer is complete. Runs on Neo4j, or on an in-memory graph with zero setup.",
       problem:
-        "Plain vector RAG retrieves similar chunks but can't follow chains of relations (venue → event → date → medalist). Single-pass GraphRAG pulls a fixed neighbourhood and misses facts that sit further out.",
+        "Plain vector RAG retrieves similar chunks but can't follow chains of relations (venue → event → Games → gold medallist). And search or graph walks only ever return a sample, so questions that need every matching event — how many, which had the most competitors, who won at the Games before 2008 — come back wrong.",
       solution:
-        "An orchestrator keeps a Pydantic InvestigationState, picks the next tool (entity linking, N-hop GSQL traversal, vector search, evidence evaluation), detects gaps, and stops when evidence is complete or the budget runs out. A benchmark runner compares it with standard RAG and single-pass GraphRAG.",
+        "An orchestrator keeps a Pydantic InvestigationState and picks the next tool each round: entity linking, N-hop Cypher traversal, vector search, a find_events filter that returns exact counts and sorted rows over every event's infobox fields, or evidence evaluation. It stops when the evidence is complete or the budget runs out and answers with citations. A benchmark runner compares it with standard RAG and single-pass GraphRAG on ground-truth accuracy and context recall.",
       facts: [
         { label: "Corpus", value: "2,951 docs" },
         { label: "Eval set", value: "150 questions" },
-        { label: "Graph DB", value: "TigerGraph" },
-        { label: "Tests", value: "11 pytest" },
+        { label: "Graph DB", value: "Neo4j / in-memory" },
+        { label: "Tests", value: "43 passing" },
       ],
-      tags: ["Python", "TigerGraph", "GSQL", "FastAPI", "Pydantic v2", "OpenAI API", "Next.js", "Vis-Network"],
+      tags: ["Python", "Neo4j", "Cypher", "FastAPI", "Pydantic v2", "Groq / OpenAI", "Next.js", "Vis-Network", "pytest"],
       featured: true,
       githubUrl: "https://github.com/Mann-Patel85/GraphScout",
       architecture: [
-        "GSQL schema with Document, Chunk, Entity and Event vertices plus directional edges",
-        "Orchestrator loop: entity linking → N-hop GSQL traversal → vector search → gap evaluation → synthesis with citations",
-        "Benchmark runner comparing Standard RAG vs single-pass GraphRAG vs Agentic GraphRAG on accuracy, completeness, tokens and latency",
-        "Next.js investigation studio: knowledge-graph view, step traces, supporting passages and corpus explorer",
-        "FastAPI backend with OpenAPI docs and an offline TigerGraph mock for tests",
+        "Graph model: Entity and Chunk nodes, RELATED_TO edges (HELD_AT, PART_OF_GAMES, WON_GOLD) and MENTIONS provenance edges; constraints and indexes created on connect",
+        "Orchestrator loop: entity linking → N-hop Cypher BFS → vector search → find_events → gap evaluation → synthesis with citations",
+        "find_events: exact filtering and ranking over every event's infobox fields (sport, Games, venue, date, competitors, nations, gold medallist), with one rule set shared by both backends",
+        "Neo4j (AuraDB Free or 5.11+) with a native vector index, or an in-memory graph built from the corpus at start-up; vectors use a free hashed bag-of-words embedder",
+        "Benchmark runner: Standard RAG vs single-pass GraphRAG vs Agentic GraphRAG on ground-truth accuracy (token-F1), context recall, tokens and latency",
+        "Next.js investigation studio (knowledge-graph canvas, step traces, passages, corpus explorer, Cypher schema view) on FastAPI; LLM via Groq gpt-oss-120b or OpenAI",
       ],
-      // TODO(Mann): paste real numbers from `python main.py --benchmark`, e.g.
-      // results: {
+      // TODO(Mann): results/benchmark_report.json in the repo is still old offline-mock output
+      // (simulated answers, 0 retrieved chunks, fixed scores), so it is NOT shown here.
+      // After a real run (LLM key set, Neo4j or in-memory graph) on eval_public.jsonl, add e.g.:
+      // results: [{
       //   title: "3-way benchmark (100 public questions)",
       //   headers: ["Pipeline", "Accuracy", "Completeness", "Avg tokens", "Latency"],
       //   rows: [
@@ -192,8 +197,9 @@ export const PORTFOLIO_DATA = {
       //     ["GraphRAG", "…", "…", "…", "…"],
       //     ["GraphScout (agentic)", "…", "…", "…", "…"],
       //   ],
-      // },
+      // }],
       media: [],
+      resumeStack: "Python, TigerGraph, GSQL, Pydantic v2, FastAPI, Next.js",
       resumeBullets: [
         "Built an agentic GraphRAG system on a TigerGraph dataset of 2,951 documents and about 5.46M tokens.",
         "Wrote an orchestrator agent that keeps investigation state, runs dynamic GSQL traversals and detects missing information.",
@@ -204,33 +210,55 @@ export const PORTFOLIO_DATA = {
     {
       slug: "agenticmarketer",
       title: "AgenticMarketer",
-      tagline: "Six-agent marketing content pipeline",
+      tagline: "Seven-agent marketing pipeline with fact-checking",
       period: "Aug 2026 – Present",
       description:
-        "A full-stack app where six agents run in sequence — brand-document retrieval, live competitor research, multi-channel copywriting, FLUX.1 image generation, readability/SEO checks, and social publishing — streamed live to the dashboard.",
+        "A deployed full-stack platform where seven agents turn a campaign goal into grounded, multi-channel marketing content — and a dedicated Fact-Check Agent verifies every claim against the user's own documents and cited sources before anything is published.",
       problem:
-        "Producing one campaign means moving between research tools, a copywriter, a designer, an SEO check and several social schedulers — and keeping every piece consistent with the brand guide.",
+        "AI-written marketing copy invents things: statistics, customers, awards and prices that appear in no source. Publishing that is a brand and legal risk, and checking it by hand defeats the point of automation.",
       solution:
-        "A FastAPI pipeline grounds every agent in uploaded brand documents (TF-IDF retrieval), researches competitors with DuckDuckGo, writes copy with Groq-hosted gpt-oss models, renders banners with FLUX.1-schnell on Cloudflare Workers AI, and scores readability with textstat before publishing.",
+        "Every agent is grounded in the signed-in user's private brand documents (TF-IDF retrieval) and numbered research sources (Google News RSS, Wikipedia). Copy is written on Groq gpt-oss, then a Fact-Check Agent at temperature 0 plus a deterministic statistics checker labels each claim supported, contradicted or unsupported — correcting or removing it and linking the evidence used. A reproducible eval harness measures the effect.",
       facts: [
-        { label: "Agents", value: "6, sequential" },
-        { label: "LLM", value: "Groq gpt-oss" },
-        { label: "Images", value: "FLUX.1-schnell" },
-        { label: "Live demo", value: "Vercel" },
+        { label: "Agents", value: "7, sequential" },
+        { label: "Planted errors caught", value: "103 / 103" },
+        { label: "True claims flagged", value: "0 / 82" },
+        { label: "Invented stats", value: "−98%" },
       ],
-      tags: ["FastAPI", "Next.js 16", "React", "SQLAlchemy", "SQLite / PostgreSQL", "Groq", "Cloudflare Workers AI", "FLUX.1", "TF-IDF RAG", "SSE", "JWT RBAC"],
+      tags: ["FastAPI", "Next.js 16", "Groq gpt-oss", "NVIDIA Nemotron", "Cloudflare Workers AI", "FLUX.1", "TF-IDF RAG", "PostgreSQL (Neon)", "SQLAlchemy", "Google OAuth", "JWT RBAC", "SSE"],
       featured: true,
       githubUrl: "https://github.com/Mann-Patel85/AgenticMarketer-Automated-Marketing-Intelligence",
       demoUrl: "https://agentic-marketer-automated-marketin.vercel.app/",
       architecture: [
-        "Pipeline: Ingestion → Research → Copywriter → Image generation → SEO audit → Publisher",
-        "Brand grounding with a TF-IDF cosine vector store (pdf/docx/txt) and file-scoped search",
-        "Copy generation on Groq (gpt-oss-120b, gpt-oss-20b) for hooks, LinkedIn, Reddit, blog, email and ad variants",
-        "1024×1024 banners via Cloudflare Workers AI FLUX.1-schnell with an image-quality check",
-        "Server-Sent Events stream agent progress to the Next.js dashboard",
-        "JWT auth with role-based access, SQLAlchemy persistence and campaign history; fallback paths between image providers",
+        "Pipeline: Ingestion → Research → Copywriter → Fact-Check → Image generation → SEO audit → Publisher",
+        "Private per-user knowledge base (pdf, docx, txt, md and images via a Cloudflare vision model) with TF-IDF cosine retrieval",
+        "Research agent numbers every Google News / Wikipedia source so claims can be cited; it may not invent statistics or events",
+        "Fact-Check Agent: builds an evidence pack, extracts checkable claims, verifies each at temperature 0, auto-corrects wrong values and flags the rest",
+        "Groq gpt-oss-120b / 20b with NVIDIA Nemotron as backup when rate-limited; FLUX.1-schnell banners with Eden AI → Pollinations fallbacks",
+        "Neon PostgreSQL via SQLAlchemy, JWT + Google OAuth, role-based access, SSRF-safe site auditor; deployed on Vercel + Render",
+      ],
+      results: [
+        {
+          title: "Fact-Check Agent on planted errors",
+          headers: ["Metric", "Result"],
+          rows: [
+            ["Planted false claims caught", "103 / 103 (all fixed automatically)"],
+            ["Wrong values corrected to the true value", "38 / 38"],
+            ["True claims wrongly flagged or removed", "0 / 82"],
+          ],
+          note: "24 synthetic campaigns for fictional brands mixing true facts with planted false claims (wrong years, cities, percentages, prices; invented customers, awards, studies). gpt-oss-120b on Groq, November 2026.",
+        },
+        {
+          title: "Invented statistics in real AI-written copy",
+          headers: ["Pipeline", "Invented statistics per campaign"],
+          rows: [
+            ["Before (old research + copywriter instructions)", "11.2"],
+            ["After (new instructions + Fact-Check Agent)", "0.2"],
+          ],
+          note: "5 campaigns; statistics that appear in no source are counted by code, not an AI judge (56 → 1, a 98% reduction). Limitations: small sample and run-to-run variance (a pilot missed 1 of 9 planted claims); non-numeric invented claims are harder (about half fixed automatically, the rest flagged); on the free Groq tier, rate limits made 2 of 5 runs fall back to statistics-only checking.",
+        },
       ],
       media: [],
+      resumeStack: "Python, FastAPI, Next.js, React, SQLAlchemy, SQLite/PostgreSQL, Groq, Cloudflare Workers AI",
       resumeBullets: [
         "Built a full-stack marketing platform with a FastAPI backend and Next.js frontend, connecting campaign creation, document grounding, SEO auditing, and publishing workflows.",
         "Developed an asynchronous six-stage campaign pipeline for brand-context retrieval, market research, multi-channel copywriting, image generation, SEO analysis, and publishing preparation; streamed progress and results to the UI with Server-Sent Events.",
@@ -244,25 +272,27 @@ export const PORTFOLIO_DATA = {
       title: "Enterprise RAG Document Auditor",
       tagline: "Hierarchical auto-merging RAG for contracts",
       description:
-        "A RAG auditor for long legal documents (MSAs, SLAs, privacy policies) that searches small chunks but answers with the full surrounding clause, built with LlamaIndex, ChromaDB and Gemini 2.5 Flash.",
+        "A RAG auditor for long legal documents (MSAs, SLAs, privacy policies) that searches small chunks but answers with the full surrounding clause. It runs a four-area compliance checklist and returns risk-rated findings with page-level citations, built with LlamaIndex and Gemini.",
       problem:
         "Flat chunking splits multi-page contracts, so a retrieved chunk about a liability cap often loses the exceptions and definitions around it.",
       solution:
-        "Documents are parsed into a three-level tree (2048 → 512 → 128 tokens). Search runs on 128-token leaves in ChromaDB; when several leaves from one section match, an auto-merging retriever swaps them for the parent section before Gemini answers.",
+        "Documents are parsed into a three-level tree (2048 → 512 → 128 tokens) and only the 128-token leaves are embedded, locally with FastEmbed. The retriever pulls the top 12 leaves; when at least half of a section's children match, it swaps them for the whole parent section before Gemini answers. Each audit area returns a summary, a LOW–CRITICAL risk level, quoted clauses and recommendations.",
       facts: [
         { label: "Chunk tree", value: "2048/512/128" },
-        { label: "Vector DB", value: "ChromaDB" },
+        { label: "Embeddings", value: "Local bge-small" },
         { label: "Retriever", value: "Auto-merging" },
-        { label: "LLM", value: "Gemini 2.5 Flash" },
+        { label: "LLM", value: "Gemini 3.8 Flash" },
       ],
-      tags: ["Python", "LlamaIndex", "ChromaDB", "Gemini 2.5 Flash", "Gemini embeddings"],
+      tags: ["Python", "LlamaIndex", "Gemini 3.8 Flash", "FastEmbed (bge-small)", "FastAPI", "pypdf"],
       featured: true,
       githubUrl: "https://github.com/Mann-Patel85/Enterprise-RAG-Agentic-Document-Auditor",
       architecture: [
-        "HierarchicalNodeParser: 2048-token roots → 512-token sections → 128-token leaves",
-        "Gemini embedding model with persistent ChromaDB storage",
-        "AutoMergingRetriever promotes clustered leaf hits to their parent section",
-        "Audit prompts covering liability limits, indemnification and data-protection clauses",
+        "HierarchicalNodeParser: 2048-token roots → 512-token sections → 128-token leaves, with every level kept in the docstore",
+        "Local ONNX embeddings (FastEmbed, BAAI/bge-small-en-v1.5): no embedding API calls or rate limits; the index is persisted to disk",
+        "AutoMergingRetriever: top-12 leaf search, merged into the parent section when at least 50% of its children are retrieved",
+        "Four-area audit checklist: liability & indemnification, data privacy & AI-training use, termination & notice, governing law & disputes",
+        "Findings with a server-parsed LOW / MEDIUM / HIGH / CRITICAL risk level, quoted clauses, page citations and a Markdown audit report",
+        "FastAPI web app (PDF upload, re-index, ad-hoc questions, audits) plus a CLI; Gemini calls run in a thread pool with a 90 s timeout",
       ],
       media: [],
     },
@@ -272,28 +302,30 @@ export const PORTFOLIO_DATA = {
       tagline: "Photo-based civic hazard triage",
       period: "Jul 2026",
       description:
-        "Citizens upload a photo of a hazard; Gemini 2.5 Flash classifies it and scores urgency 1–10, GPS is read from EXIF (or the browser), and city staff manage incidents on a live map.",
+        "Citizens photograph a hazard (open manhole, dangling cable, water leak); Gemini 2.5 Flash classifies it and scores urgency 1–10, nearby duplicates are merged, and city officials work the queue from a live map — while citizens track their report's status.",
       problem:
-        "Municipal complaint portals rely on manual sorting, so a dangerous open manhole can wait in the same queue as a faded road marking.",
+        "Municipal complaint portals rely on manual sorting, so a dangerous open manhole can wait in the same queue as a faded road marking — and the same pothole gets reported twenty times.",
       solution:
-        "A FastAPI backend sends each photo to Gemini with a Pydantic response schema, stores the category, urgency and summary in SQLite, and a Next.js dashboard plots incidents on a Leaflet map with status tracking and CSV export.",
+        "A FastAPI backend sends each photo to Gemini with a structured output schema (fixed category list, urgency, one-line diagnosis) and rejects photos that show no hazard. Reports of the same category within 60 m are linked as duplicates and boost the original's priority. Officials get a token-protected Next.js dashboard with a Leaflet map, priority queue, KPIs and CSV export.",
       facts: [
         { label: "Vision model", value: "Gemini 2.5 Flash" },
         { label: "Urgency", value: "1–10 score" },
-        { label: "Map", value: "Leaflet" },
+        { label: "Duplicate merge", value: "Within 60 m" },
         { label: "Deploy", value: "Docker Compose" },
       ],
-      tags: ["FastAPI", "Next.js", "Gemini 2.5 Flash", "Pydantic v2", "SQLAlchemy", "SQLite", "Leaflet", "Docker"],
+      tags: ["FastAPI", "Next.js 16", "Gemini 2.5 Flash", "Pydantic v2", "SQLAlchemy 2", "SQLite", "Leaflet / OpenStreetMap", "Docker", "pytest"],
       featured: false,
       githubUrl: "https://github.com/Mann-Patel85/LocusTriage-AI",
       architecture: [
-        "Gemini 2.5 Flash with structured Pydantic output: category, urgency score, summary",
-        "EXIF GPS extraction with Pillow, falling back to browser geolocation",
-        "Citizen portal (upload, severity gauge, upvotes) and official dashboard (filters, status updates, CSV export)",
-        "Leaflet map with colour-coded urgency pins",
-        "Docker Compose setup for backend and frontend",
+        "Gemini structured output: category from a fixed list, urgency 1–10, diagnosis; non-hazard photos rejected, and reports marked NEEDS REVIEW if the AI is unavailable",
+        "Location priority: browser GPS or manual entry → photo EXIF GPS → approximate (clearly flagged)",
+        "Duplicate detection links open reports of the same category within 60 m and adds a confirmation to the original",
+        "Citizen report tracking with a status timeline; one atomic community confirmation per device",
+        "Token-protected official dashboard: priority queue (urgency + confirmations), KPIs incl. average time to resolve, Leaflet map, CSV export hardened against formula injection",
+        "Photos re-encoded on upload to strip EXIF and block decompression bombs; Docker Compose and a pytest suite",
       ],
       media: [],
+      resumeStack: "Python, FastAPI, Gemini 2.5 Flash, Next.js, Leaflet, SQLAlchemy, Docker",
       resumeBullets: [
         "Scored reported civic hazards from photos on a 1–10 urgency scale using Gemini 2.5 Flash image analysis.",
         "Extracted GPS coordinates from image EXIF metadata to place each report on a map.",
@@ -326,9 +358,10 @@ export const PORTFOLIO_DATA = {
         "Offline document Q&A using sentence-aware chunking and TF-IDF retrieval — no external API",
         "OpenCV Haar-cascade face detection and histogram matching to issue single-use download tokens",
         "LSB steganography to hide text inside images",
-        "Self-destructing shares (TTL or one download) and SHA-256 duplicate detection",
+        "Self-destructing shares (TTL or one download, shredded after the file is delivered), SHA-256 duplicate detection, and file paths confined to the shared folder",
       ],
       media: [],
+      resumeStack: "Python, FastAPI, React, scikit-learn, OpenCV, WebSockets",
       resumeBullets: [
         "Built a full-stack local network file-sharing app with a FastAPI backend and React dashboard for uploads, downloads, file management, search, and storage analytics.",
         "Implemented document categorization and keyword tagging with TF-IDF and SGDClassifier, plus local document Q&A that retrieves relevant passages using TF-IDF similarity.",

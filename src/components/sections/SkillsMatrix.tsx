@@ -27,7 +27,7 @@ export function SkillsMatrix() {
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Technical skills</h2>
         <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-2xl">
-          The tools I&apos;ve used in the projects below.
+          Languages, frameworks and tools I work with.
         </p>
       </div>
 

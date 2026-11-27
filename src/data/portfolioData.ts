@@ -142,7 +142,7 @@ export const PORTFOLIO_DATA = {
     {
       id: "databases",
       title: "Databases & Cloud",
-      items: ["PostgreSQL", "MySQL", "SQLite", "Neo4j (Cypher)", "ChromaDB", "TigerGraph (GSQL)", "AWS", "Cloudflare Workers AI"],
+      items: ["PostgreSQL", "MySQL", "SQLite", "Neo4j (Cypher)", "ChromaDB", "AWS", "Cloudflare Workers AI"],
     },
     {
       id: "languages",
@@ -152,7 +152,7 @@ export const PORTFOLIO_DATA = {
     {
       id: "tools",
       title: "Tools",
-      items: ["Docker", "Git", "GitHub", "Figma"],
+      items: ["Docker", "Git", "GitHub", "pytest", "Figma"],
     },
   ] as SkillGroup[],
 
@@ -199,12 +199,12 @@ export const PORTFOLIO_DATA = {
       //   ],
       // }],
       media: [],
-      resumeStack: "Python, TigerGraph, GSQL, Pydantic v2, FastAPI, Next.js",
+      resumeStack: "Python, Neo4j, Cypher, Pydantic v2, FastAPI, Next.js",
       resumeBullets: [
-        "Built an agentic GraphRAG system on a TigerGraph dataset of 2,951 documents and about 5.46M tokens.",
-        "Wrote an orchestrator agent that keeps investigation state, runs dynamic GSQL traversals and detects missing information.",
-        "Implemented N-hop BFS graph exploration to gather context around each entity.",
-        "Benchmarked 3 approaches (Vector RAG, Static GraphRAG, Agentic GraphRAG) on accuracy, completeness and token use.",
+        "Built an agentic GraphRAG system over a Neo4j knowledge graph of 2,951 documents and about 5.46M tokens.",
+        "Wrote an orchestrator agent that keeps investigation state, runs dynamic Cypher traversals and detects missing information.",
+        "Implemented N-hop BFS graph exploration and an exact event filter for counting and ranking questions.",
+        "Built a 3-way benchmark (Vector RAG, Static GraphRAG, Agentic GraphRAG) on accuracy, completeness and tokens; 43 tests.",
       ],
     },
     {
@@ -258,13 +258,12 @@ export const PORTFOLIO_DATA = {
         },
       ],
       media: [],
-      resumeStack: "Python, FastAPI, Next.js, React, SQLAlchemy, SQLite/PostgreSQL, Groq, Cloudflare Workers AI",
+      resumeStack: "Python, FastAPI, Next.js, React, SQLAlchemy, PostgreSQL, Groq, Cloudflare Workers AI",
       resumeBullets: [
-        "Built a full-stack marketing platform with a FastAPI backend and Next.js frontend, connecting campaign creation, document grounding, SEO auditing, and publishing workflows.",
-        "Developed an asynchronous six-stage campaign pipeline for brand-context retrieval, market research, multi-channel copywriting, image generation, SEO analysis, and publishing preparation; streamed progress and results to the UI with Server-Sent Events.",
-        "Implemented a document-grounding workflow that extracts text from PDF, DOCX, and TXT files, splits it into overlapping chunks, and retrieves relevant passages using TF-IDF and cosine similarity.",
-        "Integrated Groq and image-generation services with fallback paths, and added campaign SEO checks for readability, keywords, and technical site metadata.",
-        "Added JWT authentication, role-based access controls, SQLAlchemy persistence, campaign history, and publishing connectors for social platforms, blogs, and webhooks.",
+        "Built a full-stack marketing platform with a FastAPI backend and Next.js frontend, running an asynchronous seven-agent pipeline for brand-context retrieval, market research, copywriting, fact-checking, image generation, SEO analysis, and publishing, with progress streamed over Server-Sent Events.",
+        "Built a Fact-Check Agent that verifies every factual claim against the user's documents and cited sources; in a reproducible evaluation it caught 103/103 planted false claims with 0/82 true claims wrongly flagged, and with new grounding instructions, invented statistics per campaign fell 98% (from 11.2 to 0.2).",
+        "Implemented a document-grounding workflow that extracts text from PDF, DOCX, TXT, and image files into each user's private knowledge base and retrieves relevant passages using TF-IDF and cosine similarity.",
+        "Added JWT and Google OAuth sign-in, role-based access, PostgreSQL persistence via SQLAlchemy, Groq with an NVIDIA Nemotron fallback, and publishing connectors for social platforms, blogs, and webhooks.",
       ],
     },
     {
@@ -329,7 +328,7 @@ export const PORTFOLIO_DATA = {
       resumeBullets: [
         "Scored reported civic hazards from photos on a 1–10 urgency scale using Gemini 2.5 Flash image analysis.",
         "Extracted GPS coordinates from image EXIF metadata to place each report on a map.",
-        "Built a Leaflet dashboard to view incidents by location.",
+        "Built a Leaflet dashboard with a priority queue and KPIs, and merged duplicate reports within 60 m.",
         "Structured the app as a FastAPI and Next.js stack with SQLAlchemy, Pydantic and Docker Compose.",
       ],
     },
